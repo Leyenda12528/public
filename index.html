@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leyenda</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(0,120,255,.25),
+            transparent 40%),
+        radial-gradient(circle at bottom right,
+            rgba(130,80,255,.20),
+            transparent 35%),
+        linear-gradient(
+            135deg,
+            #05070d,
+            #0d1322,
+            #05070d
+        );
+
+    font-family:Segoe UI, sans-serif;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,.02) 0,
+            rgba(255,255,255,.02) 1px,
+            transparent 1px,
+            transparent 80px
+        );
+
+    opacity:.5;
+}
+
+.logo-container{
+    position:relative;
+    z-index:2;
+
+    padding:40px;
+    border-radius:30px;
+
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+        0 0 60px rgba(0,140,255,.15),
+        0 0 120px rgba(0,140,255,.08);
+}
+
+.logo{
+    width:500px;
+    max-width:80vw;
+
+    filter:
+        drop-shadow(0 0 30px rgba(0,150,255,.4))
+        drop-shadow(0 0 80px rgba(0,150,255,.2));
+}
+</style>
+</head>
+<body>
+
+<div class="logo-container">
+    <img src="https://avatars.githubusercontent.com/u/40256629?v=4&size=1285" alt="Leyenda" class="logo">
+</div>
+
+</body>
+</html>
