@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Clases - Integración</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-content">
+      <h1>Portal de Estudiantes</h1>
+      <p id="institucion-name">Dirección de Integración</p>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <div class="controls-section">
+      <!-- Selección de Día -->
+      <div class="day-selector" id="day-selector">
+        <button class="btn-day active" data-dia="sabado">Sábado</button>
+        <button class="btn-day" data-dia="domingo">Domingo</button>
+      </div>
+
+      <!-- Selección de Mes -->
+      <div class="month-selector">
+        <label for="mes-select">Mes:</label>
+        <select id="mes-select">
+          <!-- Se llena dinámicamente -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Contenedor de los dos talleres del día seleccionado -->
+    <div id="talleres-container" class="talleres-container">
+      <!-- Se llenará dinámicamente con app.js -->
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>Dirección de Integración</strong> - Escuelas Integradoras</p>
+    <p>Impartido por: <span id="profesor-name">Ing. Jorge Rivera</span></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Generador de Código</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f0f4f8; padding: 2rem; color: #333; }
+    h1 { color: #0f4c81; margin-bottom: 0.5rem;}
+    .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
+    input, select { width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+    button { background: #0f4c81; color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 1rem;}
+    button:hover { background: #0c3d66; }
+    .checkbox-group { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;}
+    .checkbox-group input { width: auto; }
+    .result { margin-top: 2rem; }
+    textarea { width: 100%; height: 300px; padding: 1rem; font-family: monospace; border: 1px solid #ccc; border-radius: 4px; resize: vertical; }
+    .urls-container { border: 1px solid #eee; padding: 1rem; border-radius: 4px; background: #fafafa; }
+    .url-row { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .btn-small { padding: 0.4rem 0.8rem; background: #28a745; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Herramienta Administrativa</h1>
+    <p>Usa este formulario para crear una sesión. Al generar, copia el código que sale abajo y reemplázalo en tu archivo <code>data.js</code>.</p>
+    <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #eee;">
+
+    <div class="form-group">
+      <label>Mes:</label>
+      <select id="admin-mes">
+        <option value="septiembre-2026">Septiembre 2026</option>
+        <option value="octubre-2026">Octubre 2026</option>
+        <option value="noviembre-2026">Noviembre 2026</option>
+        <!-- Agregarás más meses manualmente aquí si lo deseas -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Día:</label>
+      <select id="admin-dia">
+        <option value="sabado">Sábado</option>
+        <option value="domingo">Domingo</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Taller:</label>
+      <select id="admin-taller">
+        <option value="taller1">Taller 1</option>
+        <option value="taller2">Taller 2</option>
+      </select>
+    </div>
+
+    <div style="background: #f8f9fa; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; border: 1px solid #e9ecef;">
+      <h3>Datos de la nueva Sesión</h3>
+      <div class="form-group">
+        <label>Número de Sesión:</label>
+        <input type="number" id="s-num" value="1">
+      </div>
+      <div class="form-group">
+        <label>Fecha (ej: 05-09-2026):</label>
+        <input type="text" id="s-fecha">
+      </div>
+      
+      <div class="checkbox-group">
+        <input type="checkbox" id="s-disponible" checked>
+        <label for="s-disponible" style="margin:0;">¿Está disponible/visible para los alumnos?</label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="s-suspendida">
+        <label for="s-suspendida" style="margin:0;">¿Clase Suspendida?</label>
+      </div>
+
+      <div class="form-group" style="margin-top: 1rem;">
+        <label>Ruta Imagen Motivo (si está suspendida):</label>
+        <input type="text" id="s-motivo" placeholder="archivos/aviso.png">
+      </div>
+
+      <div class="form-group">
+        <label>Ruta PDF Presentación:</label>
+        <input type="text" id="s-pres" placeholder="archivos/sep/t1-s1/pres.pdf">
+      </div>
+      
+      <div class="form-group">
+        <label>Ruta PDF Guía:</label>
+        <input type="text" id="s-guia" placeholder="archivos/sep/t1-s1/guia.pdf">
+      </div>
+
+      <div class="urls-container">
+        <label>URLs Extras:</label>
+        <div id="urls-list"></div>
+        <button type="button" class="btn-small" onclick="addUrl()">+ Añadir URL</button>
+      </div>
+
+      <div class="form-group" style="margin-top: 1rem;">
+        <label>Archivos Extras (rutas separadas por coma):</label>
+        <input type="text" id="s-extras" placeholder="archivos/extra1.xlsx, archivos/extra2.docx">
+      </div>
+    </div>
+
+    <button onclick="generarCodigo()">Generar Código data.js</button>
+
+    <div class="result">
+      <label>Copia todo este texto y pégalo reemplazando el contenido de tu <code>data.js</code>:</label>
+      <textarea id="result-code"></textarea>
+      <button onclick="copiarAlPortapapeles()" style="background:#28a745;">Copiar al Portapapeles</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // Cargar datos si la sesión ya existe
+    function cargarDatosDeSesion() {
+      const mes = document.getElementById("admin-mes").value;
+      const dia = document.getElementById("admin-dia").value;
+      const taller = document.getElementById("admin-taller").value;
+      const num = parseInt(document.getElementById("s-num").value);
+
+      if(dataClases[mes] && dataClases[mes][dia] && dataClases[mes][dia][taller]) {
+        const sesion = dataClases[mes][dia][taller].sesiones.find(s => s.sesion === num);
+        if(sesion) {
+          document.getElementById("s-fecha").value = sesion.fecha || "";
+          document.getElementById("s-disponible").checked = sesion.disponible !== false;
+          document.getElementById("s-suspendida").checked = sesion.suspendida || false;
+          document.getElementById("s-motivo").value = sesion.motivo_suspension_img || "";
+          document.getElementById("s-pres").value = sesion.presentacion || "";
+          document.getElementById("s-guia").value = sesion.guia || "";
+          document.getElementById("s-extras").value = (sesion.extras || []).join(", ");
+          
+          document.getElementById("urls-list").innerHTML = "";
+          if(sesion.urls) {
+            sesion.urls.forEach(url => {
+              const div = document.createElement("div");
+              div.className = "url-row";
+              div.innerHTML = `
+                <input type="text" value="${url.nombre}" class="url-name">
+                <input type="text" value="${url.link}" class="url-link">
+              `;
+              document.getElementById("urls-list").appendChild(div);
+            });
+          }
+          return;
+        }
+      }
+      
+      // Si no existe, limpiamos los campos para una sesión nueva
+      document.getElementById("s-fecha").value = "";
+      document.getElementById("s-pres").value = "";
+      document.getElementById("s-guia").value = "";
+      document.getElementById("s-extras").value = "";
+      document.getElementById("s-motivo").value = "";
+      document.getElementById("urls-list").innerHTML = "";
+    }
+
+    // Escuchar cambios en los selectores para auto-cargar datos
+    document.getElementById("admin-mes").addEventListener("change", cargarDatosDeSesion);
+    document.getElementById("admin-dia").addEventListener("change", cargarDatosDeSesion);
+    document.getElementById("admin-taller").addEventListener("change", cargarDatosDeSesion);
+    document.getElementById("s-num").addEventListener("input", cargarDatosDeSesion);
+    document.getElementById("s-num").addEventListener("change", cargarDatosDeSesion);
+
+    // Cargar al inicio
+    document.addEventListener("DOMContentLoaded", cargarDatosDeSesion);
+
+    function addUrl() {
+      const div = document.createElement("div");
+      div.className = "url-row";
+      div.innerHTML = `
+        <input type="text" placeholder="Título (ej: Canva)" class="url-name">
+        <input type="text" placeholder="https://..." class="url-link">
+      `;
+      document.getElementById("urls-list").appendChild(div);
+    }
+
+    function generarCodigo() {
+      const newData = JSON.parse(JSON.stringify(dataClases)); 
+      
+      const mes = document.getElementById("admin-mes").value;
+      const dia = document.getElementById("admin-dia").value;
+      const taller = document.getElementById("admin-taller").value;
+
+      if(!newData[mes]) {
+        newData[mes] = {
+          sabado: {
+            taller1: { nombre: "Organiza tu vida digital", horario: "1:00 pm - 3:00 pm", sesiones: [] },
+            taller2: { nombre: "Inteligencia Artificial para la Vida diaria", horario: "3:00 pm - 5:00 pm", sesiones: [] }
+          },
+          domingo: {
+            taller1: { nombre: "Emprende con IA", horario: "8:00 am - 10:00 am", sesiones: [] },
+            taller2: { nombre: "Taller de Herramientas para el trabajo", horario: "10:00 am - 12:00 pm", sesiones: [] }
+          }
+        };
+      }
+
+      const num = parseInt(document.getElementById("s-num").value);
+      
+      const urls = [];
+      document.querySelectorAll(".url-row").forEach(row => {
+        const n = row.querySelector(".url-name").value;
+        const l = row.querySelector(".url-link").value;
+        if(n && l) urls.push({ nombre: n, link: l });
+      });
+
+      const extrasRaw = document.getElementById("s-extras").value;
+      const extras = extrasRaw ? extrasRaw.split(",").map(s => s.trim()).filter(s => s) : [];
+
+      const nuevaSesion = {
+        sesion: num,
+        fecha: document.getElementById("s-fecha").value,
+        disponible: document.getElementById("s-disponible").checked,
+        suspendida: document.getElementById("s-suspendida").checked,
+        motivo_suspension_img: document.getElementById("s-motivo").value,
+        presentacion: document.getElementById("s-pres").value,
+        guia: document.getElementById("s-guia").value,
+        urls: urls,
+        imagenes: [], 
+        extras: extras
+      };
+
+      const sesiones = newData[mes][dia][taller].sesiones;
+      const index = sesiones.findIndex(s => s.sesion === num);
+      if(index >= 0) {
+        sesiones[index] = nuevaSesion;
+      } else {
+        sesiones.push(nuevaSesion);
+        sesiones.sort((a,b) => a.sesion - b.sesion);
+      }
+
+      const code = `const appConfig = {
+  profesor: "${appConfig.profesor}",
+  institucion: "${appConfig.institucion}"
+};
+
+const dataClases = ${JSON.stringify(newData, null, 2)};
+`;
+      document.getElementById("result-code").value = code;
+    }
+
+    function copiarAlPortapapeles() {
+      const textarea = document.getElementById("result-code");
+      textarea.select();
+      document.execCommand("copy");
+      alert("¡Código copiado! Ahora pégalo en tu archivo data.js y guárdalo.");
+    }
+  </script>
+</body>
+</html>
