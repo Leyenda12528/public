@@ -106,10 +106,10 @@
         <label>📊 Presentación (PDF):</label>
         <input type="text" id="s-pres" placeholder="archivos/s1/presentacion.pdf">
       </div>
-      <div class="fg">
-        <label>📝 Guía de clase (PDF):</label>
-        <input type="text" id="s-guia" placeholder="archivos/s1/guia.pdf">
-      </div>
+      <label>📝 Guías de clase (PDFs — se abren en el navegador):</label>
+      <div id="guia-list" style="margin:.5rem 0;"></div>
+      <button class="btn sm" style="background:#005A8C;" onclick="addRow('guia-list','guia')">+ Añadir Guía (PDF)</button>
+      <hr style="margin: 1rem 0; border:0; border-top:1px solid #e9ecef;">
       <label>📗 Archivos Excel (.xlsx — se descargan):</label>
       <div id="excel-list" style="margin:.5rem 0;"></div>
       <button class="btn green sm" onclick="addRow('excel-list','excel')">+ Añadir Excel</button>
@@ -222,8 +222,13 @@
     div.className = "row-item";
     if (tipo === "excel") {
       div.innerHTML = `
-        <input type="text" placeholder="Nombre visible" class="xl-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="Nombre visible (ej: Ejercicio 1)" class="xl-nombre" value="${vals.nombre||''}">
         <input type="text" placeholder="archivos/s1/ejercicio.xlsx" class="xl-ruta" value="${vals.ruta||''}">
+        <button class="btn red sm" onclick="this.parentElement.remove()">✕</button>`;
+    } else if (tipo === "guia") {
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre visible (ej: Guía de clase)" class="g-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="archivos/s1/guia.pdf" class="g-ruta" value="${vals.ruta||''}">
         <button class="btn red sm" onclick="this.parentElement.remove()">✕</button>`;
     } else {
       div.innerHTML = `
@@ -251,15 +256,26 @@
     document.getElementById("s-susp").checked = s.suspendida || false;
     document.getElementById("s-motivo").value  = s.motivo_suspension_img || "";
     document.getElementById("s-pres").value   = s.presentacion || "";
-    document.getElementById("s-guia").value   = s.guia || "";
+
+    // Cargar guías (array de guias o campo guia singular previo)
+    if (Array.isArray(s.guias)) {
+      s.guias.forEach(g => {
+        if (typeof g === "string") addRow("guia-list", "guia", { nombre: "Guía de clase", ruta: g });
+        else addRow("guia-list", "guia", g);
+      });
+    } else if (s.guia) {
+      addRow("guia-list", "guia", { nombre: "Guía de clase", ruta: s.guia });
+    }
+
     (s.archivosExcel || []).forEach(a => addRow("excel-list","excel", a));
     (s.urls || []).forEach(u => addRow("url-list","url", u));
   }
 
   function limpiarSesion() {
-    ["s-titulo","s-fecha","s-motivo","s-pres","s-guia"].forEach(id => document.getElementById(id).value = "");
+    ["s-titulo","s-fecha","s-motivo","s-pres"].forEach(id => document.getElementById(id).value = "");
     document.getElementById("s-disp").checked = true;
     document.getElementById("s-susp").checked = false;
+    document.getElementById("guia-list").innerHTML = "";
     document.getElementById("excel-list").innerHTML = "";
     document.getElementById("url-list").innerHTML = "";
   }
@@ -276,6 +292,11 @@
     guardarDuisEnMemoria();
 
     const id     = parseInt(document.getElementById("s-id").value);
+    const guiasFiles = [...document.querySelectorAll("#guia-list .row-item")].map(r => ({
+      nombre: r.querySelector(".g-nombre").value.trim() || "Guía de clase",
+      ruta:   r.querySelector(".g-ruta").value.trim()
+    })).filter(g => g.ruta);
+
     const nuevaS = {
       id,
       titulo: document.getElementById("s-titulo").value,
@@ -284,9 +305,9 @@
       suspendida: document.getElementById("s-susp").checked,
       motivo_suspension_img: document.getElementById("s-motivo").value,
       presentacion: document.getElementById("s-pres").value,
-      guia: document.getElementById("s-guia").value,
+      guias: guiasFiles,
       archivosExcel: [...document.querySelectorAll("#excel-list .row-item")].map(r => ({
-        nombre: r.querySelector(".xl-nombre").value.trim(),
+        nombre: r.querySelector(".xl-nombre").value.trim() || "Archivo Excel",
         ruta:   r.querySelector(".xl-ruta").value.trim()
       })).filter(a => a.ruta),
       urls: [...document.querySelectorAll("#url-list .row-item")].map(r => ({

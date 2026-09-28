@@ -263,8 +263,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (sesion.presentacion)
         html += recursoBtn("📊", "Presentación", "Ver en nueva pestaña", sesion.presentacion, "_blank", "");
-      if (sesion.guia)
+
+      // Soporte para múltiples guías (PDFs)
+      if (Array.isArray(sesion.guias) && sesion.guias.length > 0) {
+        sesion.guias.forEach((g, idx) => {
+          const nombre = typeof g === "string" ? `Guía ${idx + 1}` : (g.nombre || `Guía ${idx + 1}`);
+          const ruta = typeof g === "string" ? g : g.ruta;
+          if (ruta) {
+            html += recursoBtn("📝", nombre, "Ver en nueva pestaña", ruta, "_blank", "");
+          }
+        });
+      } else if (sesion.guia) {
         html += recursoBtn("📝", "Guía de clase", "Ver en nueva pestaña", sesion.guia, "_blank", "");
+      }
 
       (sesion.archivosExcel || []).forEach(a =>
         html += recursoBtn("📗", a.nombre || "Archivo Excel", "Descargar .xlsx", a.ruta, "_self", "excel", true)

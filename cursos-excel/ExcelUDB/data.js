@@ -33,7 +33,19 @@ const dataCursos = [
     "descripcion": "Tablas dinámicas, validación de datos y funciones avanzadas",
     "estado": "activo",
     "duis": [
-      "00000000-0"
+      "10000000-0",
+      "05758527-1",
+      "04017190-6",
+      "05900014-6",
+      "06102225-1",
+      "06517818-5",
+      "06902027-9",
+      "06501537-9",
+      "07331702-8",
+      "01896926-8",
+      "02906167-5",
+      "05561108-4",
+      "06230439-7"
     ],
     "sesiones": [
       {
@@ -44,7 +56,7 @@ const dataCursos = [
         "suspendida": false,
         "motivo_suspension_img": "",
         "presentacion": "archivos/Inter1/s1/1- Sesion1_Intermedio1.pdf",
-        "guia": "",
+        "guias": [],
         "archivosExcel": [
           {
             "nombre": "Guia1",
@@ -61,7 +73,12 @@ const dataCursos = [
         "suspendida": false,
         "motivo_suspension_img": "",
         "presentacion": "archivos/Inter1/s2/Sesion2_Intermedio1.pdf",
-        "guia": "archivos/Inter1/s2/Guia_Sesion2_Intermedio1.pdf",
+        "guias": [
+          {
+            "nombre": "Guía de clase",
+            "ruta": "archivos/Inter1/s2/Guia_Sesion2_Intermedio1.pdf"
+          }
+        ],
         "archivosExcel": [
           {
             "nombre": "Guia2",
