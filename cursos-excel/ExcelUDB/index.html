@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Curso</title>
+  <link rel="icon" href="../../assets/img/Logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Overlay de inicio de sesión con DUI -->
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-box">
+      <img id="login-logo" src="../../assets/img/UDB_horizontal fondo oscuro.png" alt="Logo">
+      <h2>Acceso al Portal</h2>
+      <p id="login-subtext">Ingresa tu número de DUI para acceder a tus materiales de clase.</p>
+      <form id="login-form">
+        <div class="login-input-wrap">
+          <input type="text" id="dui-input" placeholder="00000000-0" maxlength="10" autocomplete="off" required>
+        </div>
+        <div id="login-error" class="login-error"></div>
+        <button type="submit" class="login-btn">Verificar e Ingresar</button>
+      </form>
+      <p class="login-footer">Solo estudiantes registrados tienen acceso a los contenidos.</p>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <img id="header-logo" src="../../assets/img/UDB_horizontal fondo oscuro.png" alt="Logo" class="header-logo">
+        <div class="header-text">
+          <h1 id="tema-name">Curso</h1>
+          <p id="grupo-name">Grupo</p>
+        </div>
+      </div>
+      <div class="header-user" id="header-user" style="display:none;">
+        <span id="user-dui-badge">DUI: ...</span>
+        <button class="logout-btn" id="logout-btn" title="Cerrar sesión">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="main-content"></div>
+  </main>
+
+  <footer class="footer">
+    <p id="inst-name">Institución</p>
+    <p>Instructor: <span id="prof-name">Instructor</span></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

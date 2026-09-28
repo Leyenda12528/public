@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin — Curso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue:#002855; --gold:#FFB81C; --green:#1D6F42; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:#f0f4f8;padding:2rem;color:#333;}
+    .wrap{max-width:860px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1);}
+    .top{background:var(--blue);color:#fff;padding:1.5rem 2rem;border-bottom:4px solid var(--gold);}
+    .top h1{font-size:1.4rem;} .top p{font-size:.85rem;opacity:.8;margin-top:.3rem;}
+    .body{padding:2rem;}
+    h2{color:var(--blue);margin-bottom:.8rem;font-size:1.1rem;}
+    hr{border:0;border-top:1px solid #eee;margin:1.5rem 0;}
+    .fg{margin-bottom:.9rem;}
+    label{display:block;font-weight:600;font-size:.88rem;margin-bottom:.3rem;color:#444;}
+    input,select,textarea{width:100%;padding:.55rem .8rem;border:1px solid #ccc;border-radius:4px;font-family:inherit;font-size:.93rem;}
+    input:focus,select:focus,textarea:focus{border-color:var(--blue);outline:none;}
+    .chk{display:flex;align-items:center;gap:.5rem;margin:.4rem 0;}
+    .chk input{width:auto;}
+    .btn{background:var(--blue);color:#fff;border:none;padding:.65rem 1.3rem;border-radius:4px;cursor:pointer;font-weight:600;font-size:.9rem;transition:background .2s;}
+    .btn:hover{background:#003f80;} .btn.green{background:var(--green);} .btn.green:hover{background:#155230;}
+    .btn.gold{background:var(--gold);color:var(--blue);} .btn.gold:hover{background:#e0a300;}
+    .btn.sm{padding:.38rem .8rem;font-size:.82rem;}
+    .btn.red{background:#e53e3e;} .btn.red:hover{background:#c53030;}
+    .row-item{display:flex;gap:.5rem;margin-bottom:.5rem;}
+    .row-item input{flex:1;}
+    .box{background:#f8f9fa;border:1px solid #e9ecef;border-radius:6px;padding:1.1rem;margin-bottom:.8rem;}
+    .info{display:inline-block;background:#e3f2fd;color:#1565c0;padding:.3rem .7rem;border-radius:4px;font-size:.8rem;margin-bottom:1rem;}
+    .result{margin-top:2rem;}
+    .result textarea{height:260px;font-family:monospace;font-size:.83rem;resize:vertical;}
+    .btn-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem;}
+    .mode-tag{display:inline-block;padding:.25rem .7rem;border-radius:12px;font-size:.78rem;font-weight:700;margin-bottom:1rem;}
+    .mode-tag.single{background:#e3f2fd;color:#1565c0;}
+    .mode-tag.multi{background:#e8f5e9;color:var(--green);}
+    .curso-item{border:1px solid #ddd;border-radius:6px;padding:.8rem 1rem;margin-bottom:.5rem;cursor:pointer;transition:background .2s;}
+    .curso-item:hover,.curso-item.selected{background:#e3f2fd;border-color:#90caf9;}
+    .curso-item .ci-title{font-weight:600;font-size:.9rem;}
+    .curso-item .ci-estado{font-size:.78rem;color:#666;}
+    .hidden{display:none;}
+    .dui-counter{display:inline-block;font-size:0.8rem;color:var(--green);font-weight:700;margin-top:0.3rem;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>⚙️ Administrador del Portal</h1>
+    <p id="admin-desc">Genera el código para data.js sin editar JSON manualmente.</p>
+  </div>
+  <div class="body">
+
+    <div class="info">💡 Gestiona los alumnos autorizados (DUIs) y las sesiones. Al finalizar, genera el código, cópialo en tu data.js y haz git push.</div>
+
+    <div id="mode-indicator"></div>
+
+    <!-- PANEL MULTI: seleccionar curso -->
+    <div id="multi-panel" class="hidden">
+      <h2>Selecciona el Curso / Submódulo</h2>
+      <div id="curso-list-admin"></div>
+      <hr>
+    </div>
+
+    <!-- GESTIÓN DE DUIS -->
+    <h2>👥 Alumnos Autorizados (DUIs) <span id="dui-curso-nombre" style="font-size:0.9rem; color:#666; font-weight:normal;"></span></h2>
+    <div class="box">
+      <label>Lista de DUIs con acceso (un DUI por línea o separados por coma):</label>
+      <textarea id="duis-input" rows="4" placeholder="01234567-8&#10;87654321-0"></textarea>
+      <div class="dui-counter" id="dui-count">0 alumnos registrados</div>
+    </div>
+
+    <hr>
+
+    <h2>Gestión de Sesión</h2>
+    <div class="box">
+      <div class="fg">
+        <label>Número de sesión:</label>
+        <input type="number" id="s-id" value="1" min="1">
+      </div>
+      <div class="fg">
+        <label>Título de la sesión:</label>
+        <input type="text" id="s-titulo" placeholder="Ej: Tablas dinámicas">
+      </div>
+      <div class="fg">
+        <label>Fecha (ej: 04-10-2026):</label>
+        <input type="text" id="s-fecha">
+      </div>
+      <div class="chk">
+        <input type="checkbox" id="s-disp" checked>
+        <label for="s-disp" style="margin:0;">¿Visible para los alumnos?</label>
+      </div>
+      <div class="chk">
+        <input type="checkbox" id="s-susp">
+        <label for="s-susp" style="margin:0;">¿Sesión suspendida?</label>
+      </div>
+      <div class="fg" style="margin-top:.6rem;">
+        <label>Imagen motivo suspensión (ruta):</label>
+        <input type="text" id="s-motivo" placeholder="archivos/aviso.png">
+      </div>
+    </div>
+
+    <h2>Archivos</h2>
+    <div class="box">
+      <div class="fg">
+        <label>📊 Presentación (PDF):</label>
+        <input type="text" id="s-pres" placeholder="archivos/s1/presentacion.pdf">
+      </div>
+      <div class="fg">
+        <label>📝 Guía de clase (PDF):</label>
+        <input type="text" id="s-guia" placeholder="archivos/s1/guia.pdf">
+      </div>
+      <label>📗 Archivos Excel (.xlsx — se descargan):</label>
+      <div id="excel-list" style="margin:.5rem 0;"></div>
+      <button class="btn green sm" onclick="addRow('excel-list','excel')">+ Añadir Excel</button>
+    </div>
+
+    <h2>URLs extra</h2>
+    <div class="box">
+      <div id="url-list" style="margin-bottom:.5rem;"></div>
+      <button class="btn sm" onclick="addRow('url-list','url')">+ Añadir URL</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn gold" onclick="cargarSesion()">🔄 Cargar sesión existente</button>
+      <button class="btn gold" onclick="generarCodigo()">⚡ Generar data.js</button>
+    </div>
+
+    <div class="result">
+      <label>Copia este texto y pégalo en tu <code>data.js</code>:</label>
+      <textarea id="result-code" readonly></textarea>
+      <div class="btn-row">
+        <button class="btn green" onclick="copiar()">📋 Copiar al Portapapeles</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+  const isSingle = typeof dataCurso !== "undefined";
+  const isMulti  = typeof dataCursos !== "undefined";
+  let selectedCursoIdx = 0;
+
+  // ── Indicator
+  const modeDiv = document.getElementById("mode-indicator");
+  if (isSingle) modeDiv.innerHTML = `<span class="mode-tag single">MODO: Curso único</span>`;
+  if (isMulti)  modeDiv.innerHTML = `<span class="mode-tag multi">MODO: Múltiples cursos</span>`;
+
+  // ── Multi: listar cursos para seleccionar
+  if (isMulti) {
+    document.getElementById("multi-panel").classList.remove("hidden");
+    const cl = document.getElementById("curso-list-admin");
+    dataCursos.forEach((c, i) => {
+      const div = document.createElement("div");
+      div.className = "curso-item" + (i === 0 ? " selected" : "");
+      div.id = `ci-${i}`;
+      div.innerHTML = `<div class="ci-title">${c.titulo}</div><div class="ci-estado">${c.estado} · ${(c.duis || []).length} alumnos</div>`;
+      div.addEventListener("click", () => {
+        // Guardar DUIs del curso anterior antes de cambiar
+        guardarDuisEnMemoria();
+        document.querySelectorAll(".curso-item").forEach(x => x.classList.remove("selected"));
+        div.classList.add("selected");
+        selectedCursoIdx = i;
+        cargarDuisDeCursoActual();
+        cargarSesion();
+      });
+      cl.appendChild(div);
+    });
+  }
+
+  // ── Gestión de DUIs
+  const duisInput = document.getElementById("duis-input");
+  const duiCount  = document.getElementById("dui-count");
+
+  function parseDuisText(text) {
+    if (!text) return [];
+    return text
+      .split(/[\n,;]+/)
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
+  }
+
+  function updateDuiCount() {
+    const list = parseDuisText(duisInput.value);
+    duiCount.textContent = `${list.length} alumnos registrados`;
+  }
+  duisInput.addEventListener("input", updateDuiCount);
+
+  function cargarDuisDeCursoActual() {
+    if (isSingle) {
+      duisInput.value = (dataCurso.duis || []).join("\n");
+      document.getElementById("dui-curso-nombre").textContent = `(${dataCurso.titulo})`;
+    } else if (isMulti) {
+      const c = dataCursos[selectedCursoIdx];
+      duisInput.value = (c.duis || []).join("\n");
+      document.getElementById("dui-curso-nombre").textContent = `(${c.titulo})`;
+    }
+    updateDuiCount();
+  }
+
+  function guardarDuisEnMemoria() {
+    const arr = parseDuisText(duisInput.value);
+    if (isSingle) {
+      dataCurso.duis = arr;
+    } else if (isMulti) {
+      dataCursos[selectedCursoIdx].duis = arr;
+      const ci = document.getElementById(`ci-${selectedCursoIdx}`);
+      if (ci) {
+        ci.querySelector(".ci-estado").textContent = `${dataCursos[selectedCursoIdx].estado} · ${arr.length} alumnos`;
+      }
+    }
+  }
+
+  // Cargar DUIs iniciales
+  cargarDuisDeCursoActual();
+
+  // ── Rows dinámicos
+  function addRow(containerId, tipo, vals = {}) {
+    const div = document.createElement("div");
+    div.className = "row-item";
+    if (tipo === "excel") {
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre visible" class="xl-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="archivos/s1/ejercicio.xlsx" class="xl-ruta" value="${vals.ruta||''}">
+        <button class="btn red sm" onclick="this.parentElement.remove()">✕</button>`;
+    } else {
+      div.innerHTML = `
+        <input type="text" placeholder="Título" class="u-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="https://..." class="u-link" value="${vals.link||''}">
+        <button class="btn red sm" onclick="this.parentElement.remove()">✕</button>`;
+    }
+    document.getElementById(containerId).appendChild(div);
+  }
+
+  // ── Cargar sesión existente en el form
+  function cargarSesion() {
+    const id = parseInt(document.getElementById("s-id").value);
+    let sesiones = [];
+    if (isSingle) sesiones = dataCurso.sesiones || [];
+    if (isMulti)  sesiones = dataCursos[selectedCursoIdx].sesiones || [];
+
+    const s = sesiones.find(x => x.id === id);
+    limpiarSesion();
+    if (!s) { return; }
+
+    document.getElementById("s-titulo").value = s.titulo || "";
+    document.getElementById("s-fecha").value  = s.fecha  || "";
+    document.getElementById("s-disp").checked = s.disponible !== false;
+    document.getElementById("s-susp").checked = s.suspendida || false;
+    document.getElementById("s-motivo").value  = s.motivo_suspension_img || "";
+    document.getElementById("s-pres").value   = s.presentacion || "";
+    document.getElementById("s-guia").value   = s.guia || "";
+    (s.archivosExcel || []).forEach(a => addRow("excel-list","excel", a));
+    (s.urls || []).forEach(u => addRow("url-list","url", u));
+  }
+
+  function limpiarSesion() {
+    ["s-titulo","s-fecha","s-motivo","s-pres","s-guia"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("s-disp").checked = true;
+    document.getElementById("s-susp").checked = false;
+    document.getElementById("excel-list").innerHTML = "";
+    document.getElementById("url-list").innerHTML = "";
+  }
+
+  // Cambiar ID de sesión auto-carga datos si existen
+  document.getElementById("s-id").addEventListener("input", cargarSesion);
+  document.getElementById("s-id").addEventListener("change", cargarSesion);
+
+  // Cargar sesión inicial
+  cargarSesion();
+
+  // ── Generar código
+  function generarCodigo() {
+    guardarDuisEnMemoria();
+
+    const id     = parseInt(document.getElementById("s-id").value);
+    const nuevaS = {
+      id,
+      titulo: document.getElementById("s-titulo").value,
+      fecha:  document.getElementById("s-fecha").value,
+      disponible: document.getElementById("s-disp").checked,
+      suspendida: document.getElementById("s-susp").checked,
+      motivo_suspension_img: document.getElementById("s-motivo").value,
+      presentacion: document.getElementById("s-pres").value,
+      guia: document.getElementById("s-guia").value,
+      archivosExcel: [...document.querySelectorAll("#excel-list .row-item")].map(r => ({
+        nombre: r.querySelector(".xl-nombre").value.trim(),
+        ruta:   r.querySelector(".xl-ruta").value.trim()
+      })).filter(a => a.ruta),
+      urls: [...document.querySelectorAll("#url-list .row-item")].map(r => ({
+        nombre: r.querySelector(".u-nombre").value.trim(),
+        link:   r.querySelector(".u-link").value.trim()
+      })).filter(u => u.link)
+    };
+
+    let code = "";
+    const cfgStr = `const appConfig = ${JSON.stringify(appConfig, null, 2)};\n\n`;
+
+    if (isSingle) {
+      const newData = JSON.parse(JSON.stringify(dataCurso));
+      newData.duis = parseDuisText(duisInput.value);
+      upsertSesion(newData.sesiones, nuevaS);
+      code = cfgStr + `const dataCurso = ${JSON.stringify(newData, null, 2)};`;
+    }
+
+    if (isMulti) {
+      const newData = JSON.parse(JSON.stringify(dataCursos));
+      newData[selectedCursoIdx].duis = parseDuisText(duisInput.value);
+      upsertSesion(newData[selectedCursoIdx].sesiones, nuevaS);
+      code = cfgStr + `const dataCursos = ${JSON.stringify(newData, null, 2)};`;
+    }
+
+    document.getElementById("result-code").value = code;
+  }
+
+  function upsertSesion(arr, s) {
+    const idx = arr.findIndex(x => x.id === s.id);
+    if (idx >= 0) arr[idx] = s;
+    else { arr.push(s); arr.sort((a,b) => a.id - b.id); }
+  }
+
+  function copiar() {
+    const t = document.getElementById("result-code");
+    t.select();
+    document.execCommand("copy");
+    alert("¡Copiado! Pégalo en data.js y haz git push.");
+  }
+</script>
+</body>
+</html>
