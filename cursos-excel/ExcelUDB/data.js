@@ -86,6 +86,28 @@ const dataCursos = [
           }
         ],
         "urls": []
+      },
+      {
+        "id": 3,
+        "titulo": "Tablas dinámicas avanzadas + Gráficos dinámicos",
+        "fecha": "03-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos\\Inter1\\s3\\SESION  NO. 3.pdf",
+        "guias": [
+          {
+            "nombre": "Guía de clase",
+            "ruta": "archivos\\Inter1\\s3\\Guia_Sesion3_Intermedio1.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Ejercicio",
+            "ruta": "archivos\\Inter1\\s3\\Sesion3_Intermedio1_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
       }
     ]
   }
