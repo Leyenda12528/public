@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Excel — SuperNova Lab SV</title>
+  <!-- Favicon usando el SVG oficial de SuperNova Lab -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305070D'/%3E%3Cpath d='M9 10 L7 10 L7 22 L10 22 L10 15 L14 22 L16 22 L20 15 L20 22 L23 22 L23 10 L21 10 L15 19 Z' fill='%2300E5FF'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Overlay de inicio de sesión con DUI -->
+  <div id="login-overlay" class="login-overlay">
+    <div class="login-box">
+      <!-- Logo SuperNova Lab inline -->
+      <div class="snl-logo" style="justify-content:center; margin-bottom:1.5rem;">
+        <svg class="snl-logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="7" fill="#05070D"/>
+          <rect width="32" height="32" rx="7" fill="url(#logoGrad)" opacity="0.15"/>
+          <path d="M8 9 L6 9 L6 23 L9.5 23 L9.5 15.5 L14.5 23 L16 23 L21 15.5 L21 23 L24.5 23 L24.5 9 L22.5 9 L15.2 20.5 Z" fill="url(#logoGrad)"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#008CFF"/>
+              <stop offset="100%" stop-color="#00E5FF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="snl-logo-text">
+          <span class="snl-logo-name">SuperNova Lab SV</span>
+          <span class="snl-logo-sub">Aprende · Crea · Transforma</span>
+        </div>
+      </div>
+      <h2>Acceso al Portal</h2>
+      <p id="login-subtext">Ingresa tu número de DUI para acceder a tus materiales de clase.</p>
+      <form id="login-form">
+        <div class="login-input-wrap">
+          <input type="text" id="dui-input" placeholder="00000000-0" maxlength="10" autocomplete="off" required>
+        </div>
+        <div id="login-error" class="login-error"></div>
+        <button type="submit" class="login-btn">Verificar e Ingresar →</button>
+      </form>
+      <p class="login-footer">Solo participantes registrados tienen acceso a los contenidos.</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <!-- Logo SuperNova Lab -->
+        <a href="https://supernovalabsv.com" target="_blank" class="snl-logo">
+          <svg class="snl-logo-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="7" fill="#05070D"/>
+            <rect width="32" height="32" rx="7" fill="url(#hLogoGrad)" opacity="0.15"/>
+            <path d="M8 9 L6 9 L6 23 L9.5 23 L9.5 15.5 L14.5 23 L16 23 L21 15.5 L21 23 L24.5 23 L24.5 9 L22.5 9 L15.2 20.5 Z" fill="url(#hLogoGrad)"/>
+            <defs>
+              <linearGradient id="hLogoGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#008CFF"/>
+                <stop offset="100%" stop-color="#00E5FF"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="snl-logo-text">
+            <span class="snl-logo-name">SuperNova Lab SV</span>
+            <span class="snl-logo-sub">Aprende · Crea · Transforma</span>
+          </div>
+        </a>
+        <div class="header-text">
+          <h1 id="tema-name">Excel</h1>
+          <p id="grupo-name">Grupo</p>
+        </div>
+      </div>
+      <div class="header-user" id="header-user" style="display:none;">
+        <span id="user-dui-badge">DUI: ...</span>
+        <button class="logout-btn" id="logout-btn" title="Cerrar sesión">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="main-content"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="snl-logo">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#05070D"/>
+        <path d="M8 9 L6 9 L6 23 L9.5 23 L9.5 15.5 L14.5 23 L16 23 L21 15.5 L21 23 L24.5 23 L24.5 9 L22.5 9 L15.2 20.5 Z" fill="url(#fLogoGrad)"/>
+        <defs>
+          <linearGradient id="fLogoGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#008CFF"/>
+            <stop offset="100%" stop-color="#00E5FF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="snl-logo-text" style="text-align:left;">
+        <span class="snl-logo-name">SuperNova Lab SV</span>
+        <span class="snl-logo-sub">Aprende · Crea · Transforma</span>
+      </div>
+    </div>
+    <p id="inst-name" style="margin-top:0.5rem;">SuperNova Lab SV</p>
+    <p>Instructor: <span id="prof-name">Instructor</span></p>
+    <p style="margin-top:0.5rem;"><a href="https://supernovalabsv.com" target="_blank">supernovalabsv.com</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

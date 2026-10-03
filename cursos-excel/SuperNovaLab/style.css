@@ -1,0 +1,441 @@
+:root {
+  /* ── SuperNova Lab Brand Colors ── */
+  --snl-bg-deep:    #05070D;
+  --snl-bg-dark:    #080b14;
+  --snl-bg-card:    rgba(11, 16, 32, 0.75);
+  --snl-electric:   #008CFF;
+  --snl-cyan:       #00E5FF;
+  --snl-violet:     #7C4DFF;
+  --snl-white:      #f8fafc;
+  --snl-muted:      #94a3b8;
+  --snl-dimmed:     #64748b;
+  --snl-green:      #22c55e;
+  --snl-border:     rgba(0, 140, 255, 0.12);
+  --snl-border-c:   rgba(0, 229, 255, 0.15);
+  --snl-grad:       linear-gradient(135deg, #008CFF, #00E5FF);
+  --snl-grad-v:     linear-gradient(135deg, #008CFF, #7C4DFF);
+  --snl-glow-b:     0 0 30px rgba(0,140,255,.35), 0 0 60px rgba(0,140,255,.12);
+  --snl-glow-c:     0 0 30px rgba(0,229,255,.25), 0 0 60px rgba(0,229,255,.08);
+  --radius: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--snl-bg-deep);
+  color: var(--snl-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Grid background (like SNL site) ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,140,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,140,255,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Login Overlay ── */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 13, 0.96);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+}
+
+.login-box {
+  background: var(--snl-bg-card);
+  border: 1px solid var(--snl-border-c);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,229,255,0.08);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+}
+.login-box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--snl-grad);
+  opacity: 0.6;
+}
+
+.login-box .snl-logo { margin: 0 auto 1.5rem; }
+.login-box h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--snl-white);
+  margin-bottom: 0.4rem;
+}
+.login-box p {
+  color: var(--snl-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+  line-height: 1.6;
+}
+
+.login-input-wrap { margin-bottom: 1rem; }
+.login-input-wrap input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--snl-border-c);
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  font-family: inherit;
+  text-align: center;
+  letter-spacing: 2px;
+  color: var(--snl-white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.login-input-wrap input::placeholder { color: var(--snl-dimmed); letter-spacing: 0; }
+.login-input-wrap input:focus { border-color: var(--snl-cyan); box-shadow: 0 0 0 3px rgba(0,229,255,0.1); }
+.login-input-wrap input.error { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,0.15); }
+
+.login-error {
+  color: #f87171;
+  font-size: 0.83rem;
+  margin-bottom: 1rem;
+  min-height: 1.2rem;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--snl-grad);
+  color: var(--snl-bg-deep);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 20px rgba(0,140,255,0.4);
+}
+.login-btn:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(0,140,255,0.6), 0 8px 25px rgba(0,0,0,0.3); }
+
+.login-footer { margin-top: 1.2rem; font-size: 0.75rem; color: var(--snl-dimmed); }
+
+/* ── SNL Logo SVG (inline) ── */
+.snl-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.snl-logo-icon { flex-shrink: 0; }
+.snl-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.snl-logo-name {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--snl-white);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.snl-logo-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--snl-cyan);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Header ── */
+.header {
+  position: relative;
+  z-index: 10;
+  background: rgba(5, 7, 13, 0.85);
+  border-bottom: 1px solid var(--snl-border);
+  padding: 1.1rem 1.5rem;
+  backdrop-filter: blur(20px);
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.header-left { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.header-text h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: var(--snl-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-text p { font-size: 0.85rem; color: var(--snl-muted); margin-top: 0.15rem; }
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(0,229,255,0.06);
+  border: 1px solid var(--snl-border-c);
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  color: var(--snl-muted);
+  backdrop-filter: blur(8px);
+}
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--snl-white);
+  padding: 0.18rem 0.65rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+.logout-btn:hover { border-color: var(--snl-cyan); color: var(--snl-cyan); background: rgba(0,229,255,0.08); }
+
+/* ── Main ── */
+.container {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1.2rem;
+  width: 100%;
+}
+
+/* ── Progress Track ── */
+.progress-track {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+.progress-step:hover { transform: translateY(-2px); }
+.progress-step.finalizado { background: rgba(34,197,94,0.08); color: #4ade80; border-color: rgba(34,197,94,0.3); }
+.progress-step.activo { background: var(--snl-bg-dark); color: var(--snl-white); border-color: var(--snl-cyan); box-shadow: var(--snl-glow-c); }
+.progress-step.proximo { background: rgba(255,255,255,0.04); color: var(--snl-dimmed); cursor: default; border-color: rgba(255,255,255,0.08); }
+.progress-step .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.progress-step.finalizado .dot { background: #4ade80; box-shadow: 0 0 6px #22c55e; }
+.progress-step.activo .dot { background: var(--snl-cyan); box-shadow: 0 0 8px var(--snl-cyan); }
+.progress-step.proximo .dot { background: var(--snl-dimmed); }
+
+/* ── Curso Card ── */
+.curso-card {
+  background: var(--snl-bg-card);
+  border: 1px solid var(--snl-border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.curso-card:hover { border-color: rgba(0,140,255,0.3); box-shadow: var(--snl-glow-b); }
+.curso-header {
+  padding: 1.4rem 1.6rem;
+  background: linear-gradient(135deg, rgba(0,140,255,0.1), rgba(0,229,255,0.05));
+  border-bottom: 1px solid var(--snl-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  position: relative;
+  overflow: hidden;
+}
+.curso-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--snl-grad);
+  opacity: 0.5;
+}
+.curso-header h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--snl-white);
+}
+.curso-header p { font-size: 0.83rem; color: var(--snl-muted); margin-top: 0.2rem; }
+
+.estado-badge {
+  padding: 0.28rem 0.85rem;
+  border-radius: 9999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+.estado-badge.finalizado { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.4); }
+.estado-badge.activo { background: var(--snl-grad); color: var(--snl-bg-deep); }
+.estado-badge.proximo { background: rgba(255,255,255,0.06); color: var(--snl-dimmed); border: 1px solid rgba(255,255,255,0.1); }
+
+/* ── No access ── */
+.no-access-msg {
+  padding: 1.5rem 1.6rem;
+  color: var(--snl-muted);
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ── Sesiones ── */
+.sesiones-list { padding: 1.2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+
+.sesion-item {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.sesion-item.open { border-color: rgba(0,229,255,0.25); }
+
+.sesion-header {
+  padding: 0.9rem 1.1rem;
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 1rem;
+}
+.sesion-header:hover { background: rgba(0,229,255,0.05); }
+
+.sesion-title-group { display: flex; align-items: center; gap: 0.7rem; flex: 1; min-width: 0; }
+.sesion-header h3 { font-size: 0.95rem; color: var(--snl-cyan); font-weight: 600; }
+.sesion-meta { display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
+.sesion-date { font-size: 0.8rem; color: var(--snl-dimmed); white-space: nowrap; }
+
+/* Toggle icon */
+.sesion-toggle-icon {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(0,140,255,0.15);
+  border: 1px solid rgba(0,140,255,0.3);
+  color: var(--snl-electric);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  user-select: none;
+}
+.sesion-header:hover .sesion-toggle-icon { transform: scale(1.1); }
+.sesion-item.open .sesion-toggle-icon {
+  transform: rotate(180deg);
+  background: rgba(0,229,255,0.15);
+  border-color: var(--snl-cyan);
+  color: var(--snl-cyan);
+  box-shadow: 0 0 8px rgba(0,229,255,0.4);
+}
+
+.sesion-body { padding: 1.2rem; display: none; border-top: 1px solid rgba(255,255,255,0.06); }
+.sesion-body.open { display: block; }
+
+/* ── Recursos ── */
+.recursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.75rem;
+}
+.recurso-card {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--snl-white);
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.03);
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+.recurso-card:hover {
+  background: rgba(0,140,255,0.08);
+  border-color: rgba(0,140,255,0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 12px rgba(0,140,255,0.15);
+}
+.recurso-card.excel {
+  border-left: 3px solid #22c55e;
+}
+.recurso-card.excel:hover {
+  border-color: rgba(34,197,94,0.4);
+  background: rgba(34,197,94,0.06);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 12px rgba(34,197,94,0.15);
+}
+.recurso-icon { font-size: 1.3rem; flex-shrink: 0; }
+.recurso-info small { font-weight: 400; color: var(--snl-dimmed); display: block; font-size: 0.75rem; margin-top: 0.1rem; }
+
+.badge-proximo { display:inline-block; background:rgba(255,255,255,0.06); color:var(--snl-dimmed); padding:0.2rem 0.7rem; border-radius:9999px; font-size:0.75rem; }
+.empty-msg { color: var(--snl-dimmed); font-size: 0.88rem; padding: 0.5rem 0; }
+.suspended-msg { color: #f87171; font-weight: 600; }
+.suspended-msg img { max-width: 100%; border-radius: 8px; margin-top: 0.8rem; }
+
+/* ── Footer ── */
+.footer {
+  position: relative;
+  z-index: 1;
+  background: var(--snl-bg-dark);
+  color: var(--snl-muted);
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--snl-border);
+  margin-top: auto;
+}
+.footer .snl-logo { justify-content: center; margin-bottom: 0.8rem; }
+.footer p { margin: 0.25rem 0; font-size: 0.82rem; }
+.footer a { color: var(--snl-cyan); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .header-text h1 { font-size: 1.1rem; }
+  .recursos-grid { grid-template-columns: 1fr; }
+  .sesion-header h3 { font-size: 0.88rem; }
+}

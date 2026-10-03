@@ -145,8 +145,9 @@
 
   // ── Indicator
   const modeDiv = document.getElementById("mode-indicator");
-  if (isSingle) modeDiv.innerHTML = `<span class="mode-tag single">MODO: Curso único</span>`;
-  if (isMulti)  modeDiv.innerHTML = `<span class="mode-tag multi">MODO: Múltiples cursos</span>`;
+  if (isSingle)      modeDiv.innerHTML = `<span class="mode-tag single">MODO: Curso único</span>`;
+  else if (isMulti)  modeDiv.innerHTML = `<span class="mode-tag multi">MODO: Múltiples cursos</span>`;
+  else               modeDiv.innerHTML = `<div style="background:#fff3cd;border:1px solid #ffc107;color:#856404;border-radius:6px;padding:.8rem 1rem;font-size:.85rem;margin-bottom:1rem;">⚠️ <strong>data.js sin configurar:</strong> Descomenta el bloque <code>dataCurso</code> o <code>dataCursos</code> en data.js y recarga esta página.</div>`;
 
   // ── Multi: listar cursos para seleccionar
   if (isMulti) {
@@ -289,6 +290,10 @@
 
   // ── Generar código
   function generarCodigo() {
+    if (!isSingle && !isMulti) {
+      alert("⚠️ data.js no está configurado. Descomenta dataCurso o dataCursos y recarga la página.");
+      return;
+    }
     guardarDuisEnMemoria();
 
     const id     = parseInt(document.getElementById("s-id").value);

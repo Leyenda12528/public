@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin — SuperNova Lab SV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05070D; --bg-card: #0b1020; --bg-input: #080b14;
+      --electric: #008CFF; --cyan: #00E5FF; --violet: #7C4DFF;
+      --white: #f8fafc; --muted: #94a3b8; --dimmed: #64748b;
+      --green: #22c55e; --red: #f87171;
+      --border: rgba(0,140,255,0.15); --border-c: rgba(0,229,255,0.15);
+      --grad: linear-gradient(135deg, #008CFF, #00E5FF);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--white); padding: 2rem; min-height: 100vh; }
+
+    /* Grid bg */
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image: linear-gradient(rgba(0,140,255,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,140,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px; }
+
+    .wrap { position: relative; z-index:1; max-width: 860px; margin: 0 auto; }
+
+    .top {
+      background: rgba(11,16,32,0.8);
+      border: 1px solid var(--border-c);
+      border-radius: 16px 16px 0 0;
+      padding: 1.5rem 2rem;
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+    .top::before { content:""; position:absolute; top:0; left:0; right:0; height:1px; background:var(--grad); opacity:.7; }
+    .top-header { display: flex; align-items: center; gap: 1rem; }
+    .snl-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .snl-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .snl-logo-name { font-family:'Space Grotesk',sans-serif; color:var(--white); font-size:.9rem; font-weight:700; }
+    .snl-logo-sub { font-family:'Space Grotesk',sans-serif; color:var(--cyan); font-size:.6rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+    .top h1 { font-family:'Space Grotesk',sans-serif; font-size:1.4rem; font-weight:700; letter-spacing:-0.02em; margin-top:.4rem;
+      background: var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .top p { font-size:.85rem; color:var(--muted); margin-top:.25rem; }
+
+    .body {
+      background: rgba(8,11,20,0.9);
+      border: 1px solid var(--border);
+      border-radius: 0 0 16px 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    h2 { font-family:'Space Grotesk',sans-serif; color:var(--cyan); margin-bottom:.8rem; font-size:1rem; font-weight:600; letter-spacing:.01em; }
+    hr { border:0; border-top:1px solid rgba(255,255,255,0.07); margin:1.5rem 0; }
+
+    .fg { margin-bottom:.9rem; }
+    label { display:block; font-weight:500; font-size:.83rem; margin-bottom:.35rem; color:var(--muted); }
+
+    input, select, textarea {
+      width:100%; padding:.6rem .9rem;
+      background: var(--bg-input); border:1px solid var(--border); border-radius:8px;
+      font-family:inherit; font-size:.9rem; color:var(--white);
+      transition: border-color .2s, box-shadow .2s; outline:none;
+    }
+    input:focus, select:focus, textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 3px rgba(0,229,255,0.08); }
+    input::placeholder, textarea::placeholder { color:var(--dimmed); }
+    select option { background: var(--bg-card); }
+
+    .chk { display:flex; align-items:center; gap:.5rem; margin:.5rem 0; }
+    .chk input { width:auto; accent-color:var(--cyan); }
+    .chk label { margin:0; color:var(--muted); cursor:pointer; }
+
+    .btn { border:none; padding:.65rem 1.3rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:.88rem; font-family:inherit; transition:all .2s; }
+    .btn-primary { background:var(--grad); color:var(--bg); box-shadow:0 0 15px rgba(0,140,255,.3); }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 25px rgba(0,140,255,.5); }
+    .btn-green { background:rgba(34,197,94,.15); color:var(--green); border:1px solid rgba(34,197,94,.3); }
+    .btn-green:hover { background:rgba(34,197,94,.25); }
+    .btn-violet { background:rgba(124,77,255,.15); color:#a78bfa; border:1px solid rgba(124,77,255,.3); }
+    .btn-violet:hover { background:rgba(124,77,255,.25); }
+    .btn-red { background:rgba(248,113,113,.12); color:var(--red); border:1px solid rgba(248,113,113,.2); }
+    .btn-red:hover { background:rgba(248,113,113,.2); }
+    .btn-sm { padding:.35rem .8rem; font-size:.8rem; }
+
+    .btn-row { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.8rem; }
+    .row-item { display:flex; gap:.5rem; margin-bottom:.5rem; }
+    .row-item input { flex:1; }
+
+    .box {
+      background: rgba(11,16,32,0.6);
+      border:1px solid var(--border); border-radius:10px; padding:1.1rem; margin-bottom:.8rem;
+    }
+
+    .info-tag {
+      display:inline-block; background:rgba(0,229,255,0.07); color:var(--cyan);
+      border:1px solid rgba(0,229,255,0.2); padding:.3rem .8rem; border-radius:9999px; font-size:.78rem; margin-bottom:1rem;
+    }
+
+    .result { margin-top:2rem; }
+    .result textarea { height:260px; font-family:monospace; font-size:.82rem; resize:vertical; }
+
+    .mode-tag { display:inline-block; padding:.25rem .8rem; border-radius:9999px; font-size:.75rem; font-weight:700; margin-bottom:1rem; }
+    .mode-tag.single { background:rgba(0,140,255,.1); color:var(--electric); border:1px solid rgba(0,140,255,.2); }
+    .mode-tag.multi { background:rgba(0,229,255,.08); color:var(--cyan); border:1px solid rgba(0,229,255,.2); }
+
+    .curso-item {
+      border:1px solid var(--border); border-radius:8px; padding:.75rem 1rem; margin-bottom:.5rem;
+      cursor:pointer; transition:all .2s; background:rgba(11,16,32,.5);
+    }
+    .curso-item:hover, .curso-item.selected { background:rgba(0,229,255,.06); border-color:var(--border-c); }
+    .curso-item .ci-title { font-weight:600; font-size:.88rem; color:var(--white); }
+    .curso-item .ci-estado { font-size:.75rem; color:var(--muted); margin-top:.2rem; }
+
+    .dui-counter { display:inline-block; font-size:.78rem; color:var(--cyan); font-weight:600; margin-top:.3rem; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="top-header">
+      <a href="https://supernovalabsv.com" target="_blank" class="snl-logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="7" fill="#05070D"/>
+          <path d="M8 9 L6 9 L6 23 L9.5 23 L9.5 15.5 L14.5 23 L16 23 L21 15.5 L21 23 L24.5 23 L24.5 9 L22.5 9 L15.2 20.5 Z" fill="url(#aLogoGrad)"/>
+          <defs><linearGradient id="aLogoGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#008CFF"/><stop offset="100%" stop-color="#00E5FF"/>
+          </linearGradient></defs>
+        </svg>
+        <div class="snl-logo-text">
+          <span class="snl-logo-name">SuperNova Lab SV</span>
+          <span class="snl-logo-sub">Aprende · Crea · Transforma</span>
+        </div>
+      </a>
+    </div>
+    <h1>⚙️ Administrador del Portal</h1>
+    <p>Gestiona alumnos, sesiones y archivos — genera el código para data.js.</p>
+  </div>
+
+  <div class="body">
+    <div class="info-tag">💡 Genera el código, cópialo en data.js y haz git push para publicar los cambios.</div>
+
+    <div id="mode-indicator"></div>
+
+    <!-- PANEL MULTI -->
+    <div id="multi-panel" class="hidden">
+      <h2>Selecciona el Módulo / Curso</h2>
+      <div id="curso-list-admin"></div>
+      <hr>
+    </div>
+
+    <!-- DUIS -->
+    <h2>👥 Participantes Autorizados (DUIs) <span id="dui-curso-nombre" style="font-size:.85rem;color:var(--muted);font-weight:normal;"></span></h2>
+    <div class="box">
+      <label>Lista de DUIs con acceso (un DUI por línea o separados por coma):</label>
+      <textarea id="duis-input" rows="4" placeholder="01234567-8&#10;87654321-0"></textarea>
+      <div class="dui-counter" id="dui-count">0 participantes registrados</div>
+    </div>
+
+    <hr>
+
+    <h2>📋 Sesión</h2>
+    <div class="box">
+      <div class="fg">
+        <label>Número de sesión:</label>
+        <input type="number" id="s-id" value="1" min="1">
+      </div>
+      <div class="fg">
+        <label>Título de la sesión:</label>
+        <input type="text" id="s-titulo" placeholder="Ej: Tablas dinámicas">
+      </div>
+      <div class="fg">
+        <label>Fecha (ej: 04-10-2026):</label>
+        <input type="text" id="s-fecha">
+      </div>
+      <div class="chk">
+        <input type="checkbox" id="s-disp" checked>
+        <label for="s-disp">¿Visible para los participantes?</label>
+      </div>
+      <div class="chk">
+        <input type="checkbox" id="s-susp">
+        <label for="s-susp">¿Sesión suspendida?</label>
+      </div>
+      <div class="fg" style="margin-top:.6rem;">
+        <label>Imagen motivo suspensión (ruta):</label>
+        <input type="text" id="s-motivo" placeholder="archivos/aviso.png">
+      </div>
+    </div>
+
+    <h2>📁 Archivos</h2>
+    <div class="box">
+      <div class="fg">
+        <label>📊 Presentación (PDF):</label>
+        <input type="text" id="s-pres" placeholder="archivos/s1/presentacion.pdf">
+      </div>
+      <label>📝 Guías de clase (PDFs — se abren en el navegador):</label>
+      <div id="guia-list" style="margin:.5rem 0;"></div>
+      <button class="btn btn-violet btn-sm" onclick="addRow('guia-list','guia')">+ Añadir Guía (PDF)</button>
+      <hr style="margin:1rem 0; border:0; border-top:1px solid rgba(255,255,255,0.06);">
+      <label>📗 Archivos Excel (.xlsx — se descargan):</label>
+      <div id="excel-list" style="margin:.5rem 0;"></div>
+      <button class="btn btn-green btn-sm" onclick="addRow('excel-list','excel')">+ Añadir Excel</button>
+    </div>
+
+    <h2>🔗 URLs extra</h2>
+    <div class="box">
+      <div id="url-list" style="margin-bottom:.5rem;"></div>
+      <button class="btn btn-sm" style="background:rgba(255,255,255,0.06);color:var(--muted);border:1px solid rgba(255,255,255,0.1);" onclick="addRow('url-list','url')">+ Añadir URL</button>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-violet" onclick="cargarSesion()">🔄 Cargar sesión existente</button>
+      <button class="btn btn-primary" onclick="generarCodigo()">⚡ Generar data.js</button>
+    </div>
+
+    <div class="result">
+      <label style="color:var(--muted); font-size:.85rem; margin-bottom:.5rem; display:block;">Copia este texto y pégalo en tu <code style="color:var(--cyan);">data.js</code>:</label>
+      <textarea id="result-code" readonly></textarea>
+      <div class="btn-row">
+        <button class="btn btn-green" onclick="copiar()">📋 Copiar al Portapapeles</button>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+</div><!-- /wrap -->
+
+<script src="data.js"></script>
+<script>
+  const isSingle = typeof dataCurso !== "undefined";
+  const isMulti  = typeof dataCursos !== "undefined";
+  let selectedCursoIdx = 0;
+
+  // Indicator
+  const modeDiv = document.getElementById("mode-indicator");
+  if (isSingle) modeDiv.innerHTML = `<span class="mode-tag single">MODO: Curso único</span>`;
+  else if (isMulti) modeDiv.innerHTML = `<span class="mode-tag multi">MODO: Múltiples módulos</span>`;
+  else modeDiv.innerHTML = `<div style="background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:8px;padding:.8rem 1rem;font-size:.85rem;margin-bottom:1rem;">
+    ⚠️ <strong>data.js sin configurar:</strong> Abre <code>data.js</code> y descomenta el bloque <code>dataCurso</code> (single) o <code>dataCursos</code> (multi), luego recarga esta página.
+  </div>`;
+
+  // Multi: listar cursos
+  if (isMulti) {
+    document.getElementById("multi-panel").classList.remove("hidden");
+    const cl = document.getElementById("curso-list-admin");
+    dataCursos.forEach((c, i) => {
+      const div = document.createElement("div");
+      div.className = "curso-item" + (i === 0 ? " selected" : "");
+      div.id = `ci-${i}`;
+      div.innerHTML = `<div class="ci-title">${c.titulo}</div><div class="ci-estado">${c.estado} · ${(c.duis || []).length} participantes</div>`;
+      div.addEventListener("click", () => {
+        guardarDuisEnMemoria();
+        document.querySelectorAll(".curso-item").forEach(x => x.classList.remove("selected"));
+        div.classList.add("selected");
+        selectedCursoIdx = i;
+        cargarDuisDeCursoActual();
+        cargarSesion();
+      });
+      cl.appendChild(div);
+    });
+  }
+
+  // DUIs
+  const duisInput = document.getElementById("duis-input");
+  const duiCount  = document.getElementById("dui-count");
+
+  function parseDuisText(text) {
+    if (!text) return [];
+    return text.split(/[\n,;]+/).map(s => s.trim()).filter(s => s.length > 0);
+  }
+  function updateDuiCount() {
+    const list = parseDuisText(duisInput.value);
+    duiCount.textContent = `${list.length} participantes registrados`;
+  }
+  duisInput.addEventListener("input", updateDuiCount);
+
+  function cargarDuisDeCursoActual() {
+    if (isSingle) {
+      duisInput.value = (dataCurso.duis || []).join("\n");
+      document.getElementById("dui-curso-nombre").textContent = `(${dataCurso.titulo})`;
+    } else if (isMulti) {
+      const c = dataCursos[selectedCursoIdx];
+      duisInput.value = (c.duis || []).join("\n");
+      document.getElementById("dui-curso-nombre").textContent = `(${c.titulo})`;
+    }
+    updateDuiCount();
+  }
+
+  function guardarDuisEnMemoria() {
+    const arr = parseDuisText(duisInput.value);
+    if (isSingle) dataCurso.duis = arr;
+    else if (isMulti) {
+      dataCursos[selectedCursoIdx].duis = arr;
+      const ci = document.getElementById(`ci-${selectedCursoIdx}`);
+      if (ci) ci.querySelector(".ci-estado").textContent = `${dataCursos[selectedCursoIdx].estado} · ${arr.length} participantes`;
+    }
+  }
+  cargarDuisDeCursoActual();
+
+  // Rows
+  function addRow(containerId, tipo, vals = {}) {
+    const div = document.createElement("div");
+    div.className = "row-item";
+    if (tipo === "excel") {
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre visible (ej: Ejercicio S1)" class="xl-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="archivos/s1/ejercicio.xlsx" class="xl-ruta" value="${vals.ruta||''}">
+        <button class="btn btn-red btn-sm" onclick="this.parentElement.remove()">✕</button>`;
+    } else if (tipo === "guia") {
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre visible (ej: Guía de clase)" class="g-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="archivos/s1/guia.pdf" class="g-ruta" value="${vals.ruta||''}">
+        <button class="btn btn-red btn-sm" onclick="this.parentElement.remove()">✕</button>`;
+    } else {
+      div.innerHTML = `
+        <input type="text" placeholder="Título del enlace" class="u-nombre" value="${vals.nombre||''}">
+        <input type="text" placeholder="https://..." class="u-link" value="${vals.link||''}">
+        <button class="btn btn-red btn-sm" onclick="this.parentElement.remove()">✕</button>`;
+    }
+    document.getElementById(containerId).appendChild(div);
+  }
+
+  function cargarSesion() {
+    const id = parseInt(document.getElementById("s-id").value);
+    let sesiones = [];
+    if (isSingle) sesiones = dataCurso.sesiones || [];
+    if (isMulti)  sesiones = dataCursos[selectedCursoIdx].sesiones || [];
+    const s = sesiones.find(x => x.id === id);
+    limpiarSesion();
+    if (!s) return;
+    document.getElementById("s-titulo").value = s.titulo || "";
+    document.getElementById("s-fecha").value  = s.fecha  || "";
+    document.getElementById("s-disp").checked = s.disponible !== false;
+    document.getElementById("s-susp").checked = s.suspendida || false;
+    document.getElementById("s-motivo").value  = s.motivo_suspension_img || "";
+    document.getElementById("s-pres").value   = s.presentacion || "";
+    if (Array.isArray(s.guias)) {
+      s.guias.forEach(g => {
+        if (typeof g === "string") addRow("guia-list","guia",{nombre:"Guía de clase",ruta:g});
+        else addRow("guia-list","guia",g);
+      });
+    } else if (s.guia) {
+      addRow("guia-list","guia",{nombre:"Guía de clase",ruta:s.guia});
+    }
+    (s.archivosExcel || []).forEach(a => addRow("excel-list","excel",a));
+    (s.urls || []).forEach(u => addRow("url-list","url",u));
+  }
+
+  function limpiarSesion() {
+    ["s-titulo","s-fecha","s-motivo","s-pres"].forEach(id => document.getElementById(id).value = "");
+    document.getElementById("s-disp").checked = true;
+    document.getElementById("s-susp").checked = false;
+    document.getElementById("guia-list").innerHTML = "";
+    document.getElementById("excel-list").innerHTML = "";
+    document.getElementById("url-list").innerHTML = "";
+  }
+
+  document.getElementById("s-id").addEventListener("input", cargarSesion);
+  document.getElementById("s-id").addEventListener("change", cargarSesion);
+  cargarSesion();
+
+  function generarCodigo() {
+    if (!isSingle && !isMulti) {
+      alert("⚠️ data.js no está configurado. Descomenta dataCurso o dataCursos y recarga la página.");
+      return;
+    }
+    guardarDuisEnMemoria();
+    const id = parseInt(document.getElementById("s-id").value);
+    const guiasFiles = [...document.querySelectorAll("#guia-list .row-item")].map(r => ({
+      nombre: r.querySelector(".g-nombre").value.trim() || "Guía de clase",
+      ruta:   r.querySelector(".g-ruta").value.trim()
+    })).filter(g => g.ruta);
+
+    const nuevaS = {
+      id,
+      titulo: document.getElementById("s-titulo").value,
+      fecha:  document.getElementById("s-fecha").value,
+      disponible: document.getElementById("s-disp").checked,
+      suspendida: document.getElementById("s-susp").checked,
+      motivo_suspension_img: document.getElementById("s-motivo").value,
+      presentacion: document.getElementById("s-pres").value,
+      guias: guiasFiles,
+      archivosExcel: [...document.querySelectorAll("#excel-list .row-item")].map(r => ({
+        nombre: r.querySelector(".xl-nombre").value.trim() || "Archivo Excel",
+        ruta:   r.querySelector(".xl-ruta").value.trim()
+      })).filter(a => a.ruta),
+      urls: [...document.querySelectorAll("#url-list .row-item")].map(r => ({
+        nombre: r.querySelector(".u-nombre").value.trim(),
+        link:   r.querySelector(".u-link").value.trim()
+      })).filter(u => u.link)
+    };
+
+    let code = "";
+    const cfgStr = `const appConfig = ${JSON.stringify(appConfig, null, 2)};\n\n`;
+    if (isSingle) {
+      const newData = JSON.parse(JSON.stringify(dataCurso));
+      newData.duis = parseDuisText(duisInput.value);
+      upsertSesion(newData.sesiones, nuevaS);
+      code = cfgStr + `const dataCurso = ${JSON.stringify(newData, null, 2)};`;
+    }
+    if (isMulti) {
+      const newData = JSON.parse(JSON.stringify(dataCursos));
+      newData[selectedCursoIdx].duis = parseDuisText(duisInput.value);
+      upsertSesion(newData[selectedCursoIdx].sesiones, nuevaS);
+      code = cfgStr + `const dataCursos = ${JSON.stringify(newData, null, 2)};`;
+    }
+    document.getElementById("result-code").value = code;
+  }
+
+  function upsertSesion(arr, s) {
+    const idx = arr.findIndex(x => x.id === s.id);
+    if (idx >= 0) arr[idx] = s;
+    else { arr.push(s); arr.sort((a,b) => a.id - b.id); }
+  }
+
+  function copiar() {
+    const t = document.getElementById("result-code");
+    t.select(); document.execCommand("copy");
+    alert("¡Copiado! Pégalo en data.js y haz git push.");
+  }
+</script>
+</body>
+</html>
