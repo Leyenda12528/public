@@ -98,7 +98,7 @@ const dataClases = {
             "suspendida": false,
             "motivo_suspension_img": "",
             "presentacion": "",
-            "guia": "archivos/oct/t3/s1Taller3_Sesion1_Octubre_Stellarium.pdf",
+            "guia": "archivos/oct/t3/s1/Taller3_Sesion1_Octubre_Stellarium.pdf",
             "urls": [],
             "imagenes": [],
             "extras": [
