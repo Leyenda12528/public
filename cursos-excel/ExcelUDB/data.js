@@ -33,7 +33,7 @@ const dataCursos = [
     "descripcion": "Tablas dinámicas, validación de datos y funciones avanzadas",
     "estado": "activo",
     "duis": [
-      "10000000-0",
+      "00000000-0",
       "05758527-1",
       "04017190-6",
       "05900014-6",
@@ -105,6 +105,28 @@ const dataCursos = [
           {
             "nombre": "Ejercicio",
             "ruta": "archivos\\Inter1\\s3\\Sesion3_Intermedio1_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 4,
+        "titulo": "Cierre del módulo",
+        "fecha": "10-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos\\Inter1\\s4\\Sesion4_Intermedio1.pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter1\\s4\\Guia_Sesion4_Intermedio1 (1).pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Ejercicio",
+            "ruta": "archivos\\Inter1\\s4\\Sesion4_Intermedio1_ALUMNO (2).xlsx"
           }
         ],
         "urls": []
