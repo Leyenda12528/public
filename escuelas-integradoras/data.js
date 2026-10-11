@@ -104,6 +104,20 @@ const dataClases = {
             "extras": [
               "archivos/oct/t3/s1/Guia_Excel_Texto_Fecha.pdf"
             ]
+          },
+          {
+            "sesion": 2,
+            "fecha": "11-10-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": "archivos/oct/t3/s2/Taller3_Sesion2_Octubre_CityCreator.pdf",
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              "archivos/oct/t3/s2/Guia_Excel_Formato_Condicional.pdf"
+            ]
           }
         ]
       },
@@ -123,6 +137,20 @@ const dataClases = {
             "imagenes": [],
             "extras": [
               "archivos/oct/t4/s1/Guia_Excel_Texto_Fecha.pdf"
+            ]
+          },
+          {
+            "sesion": 2,
+            "fecha": "11-10-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": "archivos/oct/t4/s2/Taller4_Sesion2_Octubre_Blockbench_Parte1.pdf",
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              "archivos/oct/t4/s2/Guia_Excel_Formato_Condicional.pdf"
             ]
           }
         ]
