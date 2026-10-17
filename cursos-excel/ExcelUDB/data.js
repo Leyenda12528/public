@@ -132,5 +132,44 @@ const dataCursos = [
         "urls": []
       }
     ]
+  },
+  {
+    "id": "intermedio-2",
+    "titulo": "Excel Intermedio 2",
+    "descripcion": "Funciones de Base de Datos y Funciones financieras",
+    "estado": "activo",
+    "duis": [
+      "00000000-0",
+      "05758527-1",
+      "04017190-6",
+      "05900014-6",
+      "06102225-1",
+      "06517818-5",
+      "06902027-9",
+      "06501537-9",
+      "07331702-8",
+      "01896926-8",
+      "02906167-5",
+      "05561108-4",
+      "06230439-7"
+    ],
+    "sesiones": [
+      {
+        "id": 1,
+        "titulo": "Bases de datos + Búsqueda avanzada · Versión PARA ALUMNOS",
+        "fecha": "17-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter2/s1/Sesion1_Intermedio2 (1).pdf",
+        "guias": [],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s1/Sesion1_Intermedio2_ALUMNO (1).xlsx"
+          }
+        ],
+        "urls": []
+      },]
   }
 ];
