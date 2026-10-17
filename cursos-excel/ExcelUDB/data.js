@@ -162,7 +162,12 @@ const dataCursos = [
         "suspendida": false,
         "motivo_suspension_img": "",
         "presentacion": "archivos/Inter2/s1/Sesion1_Intermedio2 (1).pdf",
-        "guias": [],
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s1\\Guia_Sesion1_Intermedio2 (1).pdf"
+          }
+        ],
         "archivosExcel": [
           {
             "nombre": "Guia1",
