@@ -31,7 +31,7 @@ const dataCursos = [
     "id": "intermedio-1",
     "titulo": "Excel Intermedio 1",
     "descripcion": "Tablas dinámicas, validación de datos y funciones avanzadas",
-    "estado": "activo",
+    "estado": "finalizado",
     "duis": [
       "00000000-0",
       "05758527-1",
