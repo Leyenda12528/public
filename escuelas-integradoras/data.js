@@ -118,6 +118,20 @@ const dataClases = {
             "extras": [
               "archivos/oct/t3/s2/Guia_Excel_Formato_Condicional.pdf"
             ]
+          },
+          {
+            "sesion": 3,
+            "fecha": "18-10-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "archivos\\oct\\t3\\s3\\Taller3_Sesion3_Octubre_Bomomo_Sandspiel.pdf",
+            "guia": "",
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              "archivos\\oct\\t3\\s3\\Guia_Excel_Tablas_Dinamicas.pdf"
+            ]
           }
         ]
       },
@@ -151,6 +165,20 @@ const dataClases = {
             "imagenes": [],
             "extras": [
               "archivos/oct/t4/s2/Guia_Excel_Formato_Condicional.pdf"
+            ]
+          },
+          {
+            "sesion": 3,
+            "fecha": "18-10-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": "archivos\\oct\\t4\\s3\\Taller4_Sesion3_Octubre_JigsawPlanet.pdf",
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              "archivos\\oct\\t4\\s3\\Guia_Excel_Tablas_Dinamicas.pdf"
             ]
           }
         ]
