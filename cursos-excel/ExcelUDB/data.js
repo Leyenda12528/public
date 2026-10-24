@@ -156,7 +156,7 @@ const dataCursos = [
     "sesiones": [
       {
         "id": 1,
-        "titulo": "Bases de datos + Búsqueda avanzada · Versión PARA ALUMNOS",
+        "titulo": "Bases de datos + Búsqueda avanzada ",
         "fecha": "17-10-2026",
         "disponible": true,
         "suspendida": false,
@@ -175,6 +175,29 @@ const dataCursos = [
           }
         ],
         "urls": []
-      },]
+      },
+      {
+        "id": 2,
+        "titulo": "Funciones de Base de Datos + Nombres de rango + Esquemas ",
+        "fecha": "24-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter2/s2/Sesion2_Intermedio2.pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s2\\Guia_Sesion2_Intermedio2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s2/Sesion2_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+    ]
   }
 ];
