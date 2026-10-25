@@ -132,6 +132,20 @@ const dataClases = {
             "extras": [
               "archivos\\oct\\t3\\s3\\Guia_Excel_Tablas_Dinamicas.pdf"
             ]
+          },
+          {
+            "sesion": 4,
+            "fecha": "25-10-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "archivos\\oct\\t3\\s3\\Taller3_Sesion4_Octubre_Speechma.pdf",
+            "guia": "",
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              "archivos\\oct\\t3\\s3\\Guia_Excel_Graficos_Dinamicos.pdf"
+            ]
           }
         ]
       },
@@ -179,6 +193,20 @@ const dataClases = {
             "imagenes": [],
             "extras": [
               "archivos\\oct\\t4\\s3\\Guia_Excel_Tablas_Dinamicas.pdf"
+            ]
+          },
+          {
+            "sesion": 4,
+            "fecha": "25-10-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": "archivos\\oct\\t4\\s3\\Taller4_Sesion4_Octubre_OldMapsOnline.pdf",
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              "archivos\\oct\\t4\\s3\\Guia_Excel_Graficos_Dinamicos.pdf"
             ]
           }
         ]
