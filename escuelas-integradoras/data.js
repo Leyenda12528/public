@@ -139,12 +139,12 @@ const dataClases = {
             "disponible": true,
             "suspendida": false,
             "motivo_suspension_img": "",
-            "presentacion": "archivos\\oct\\t3\\s3\\Taller3_Sesion4_Octubre_Speechma.pdf",
+            "presentacion": "archivos\\oct\\t3\\s4\\Taller3_Sesion4_Octubre_Speechma.pdf",
             "guia": "",
             "urls": [],
             "imagenes": [],
             "extras": [
-              "archivos\\oct\\t3\\s3\\Guia_Excel_Graficos_Dinamicos.pdf"
+              "archivos\\oct\\t3\\s4\\Guia_Excel_Graficos_Dinamicos.pdf"
             ]
           }
         ]
@@ -202,11 +202,11 @@ const dataClases = {
             "suspendida": false,
             "motivo_suspension_img": "",
             "presentacion": "",
-            "guia": "archivos\\oct\\t4\\s3\\Taller4_Sesion4_Octubre_OldMapsOnline.pdf",
+            "guia": "archivos\\oct\\t4\\s4\\Taller4_Sesion4_Octubre_OldMapsOnline.pdf",
             "urls": [],
             "imagenes": [],
             "extras": [
-              "archivos\\oct\\t4\\s3\\Guia_Excel_Graficos_Dinamicos.pdf"
+              "archivos\\oct\\t4\\s4\\Guia_Excel_Graficos_Dinamicos.pdf"
             ]
           }
         ]
