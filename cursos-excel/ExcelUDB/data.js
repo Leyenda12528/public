@@ -198,6 +198,28 @@ const dataCursos = [
         ],
         "urls": []
       },
+      {
+        "id": 3,
+        "titulo": "Validación · Herramientas de datos · Inmovilización",
+        "fecha": "31-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s3\\Guia_Sesion3_Intermedio2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s3/Sesion3_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
     ]
   }
 ];
