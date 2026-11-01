@@ -214,45 +214,60 @@ const dataClases = {
     }
   },
   "noviembre":{
-    "taller1":{
-      "nombre": "Emprende con IA",
-        "horario": "8:00 am - 10:00 am",
-        "sesiones": [
-          {
-            "sesion": 1,
-            "fecha": "01-11-2026",
-            "disponible": true,
-            "suspendida": false,
-            "motivo_suspension_img": "",
-            "presentacion": "",
-            "guia": "archivos/nov/t3/s1/Taller3_Sesion1_Noviembre_SpaceTypeGenerator.pdf",
-            "urls": [],
-            "imagenes": [],
-            "extras": [
-              "archivos/nov/t3/s1/Guia_Excel_Listas_Validacion.pdf"
-            ]
-          }
-        ]
+    "sabado": {
+      "taller1": {
+        "nombre": "Organiza tu vida digital",
+        "horario": "1:00 pm - 3:00 pm",
+        "sesiones": []
+      },
+      "taller2": {
+        "nombre": "Inteligencia Artificial para la Vida diaria",
+        "horario": "3:00 pm - 5:00 pm",
+        "sesiones": []
+      }
     },
-    "taller2":{
-        "nombre": "Taller de Herramientas para el trabajo",
-        "horario": "10:00 am - 12:00 pm",
-        "sesiones": [
-          {
-            "sesion": 1,
-            "fecha": "01-11-2026",
-            "disponible": true,
-            "suspendida": false,
-            "motivo_suspension_img": "",
-            "presentacion": "",
-            "guia": "archivos/nov/t4/s1/Taller4_Sesion1_Noviembre_SVGConverter.pdf",
-            "urls": [],
-            "imagenes": [],
-            "extras": [
-              "archivos/nov/t4/s1/Guia_Excel_Listas_Validacion.pdf"
-            ]
-          }
-        ]
+    "domingo":{
+      "taller1":{
+          "nombre": "Emprende con IA",
+          "horario": "8:00 am - 10:00 am",
+          "sesiones": [
+            {
+              "sesion": 1,
+              "fecha": "01-11-2026",
+              "disponible": true,
+              "suspendida": false,
+              "motivo_suspension_img": "",
+              "presentacion": "",
+              "guia": "archivos/nov/t3/s1/Taller3_Sesion1_Noviembre_SpaceTypeGenerator.pdf",
+              "urls": [],
+              "imagenes": [],
+              "extras": [
+                "archivos/nov/t3/s1/Guia_Excel_Listas_Validacion.pdf"
+              ]
+            }
+          ]
+      },
+      "taller2":{
+          "nombre": "Taller de Herramientas para el trabajo",
+          "horario": "10:00 am - 12:00 pm",
+          "sesiones": [
+            {
+              "sesion": 1,
+              "fecha": "01-11-2026",
+              "disponible": true,
+              "suspendida": false,
+              "motivo_suspension_img": "",
+              "presentacion": "",
+              "guia": "archivos/nov/t4/s1/Taller4_Sesion1_Noviembre_SVGConverter.pdf",
+              "urls": [],
+              "imagenes": [],
+              "extras": [
+                "archivos/nov/t4/s1/Guia_Excel_Listas_Validacion.pdf"
+              ]
+            }
+          ]
+      }
     }
+    
   }
 };
