@@ -213,7 +213,7 @@ const dataClases = {
       }
     }
   },
-  "noviembre":{
+  "noviembre-2026":{
     "sabado": {
       "taller1": {
         "nombre": "Organiza tu vida digital",
