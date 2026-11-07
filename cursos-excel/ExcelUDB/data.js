@@ -220,6 +220,29 @@ const dataCursos = [
         ],
         "urls": []
       },
+      ,
+      {
+        "id": 4,
+        "titulo": "Funciones Financieras · Análisis de Hipótesis · Gráficos SmartArt",
+        "fecha": "07-11-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter2/s4/Sesion4_Intermedio2.pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s4\\Guia_Sesion4_Intermedio2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s4/Sesion4_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      }
     ]
   }
 ];
