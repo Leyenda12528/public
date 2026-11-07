@@ -220,7 +220,6 @@ const dataCursos = [
         ],
         "urls": []
       },
-      ,
       {
         "id": 4,
         "titulo": "Funciones Financieras · Análisis de Hipótesis · Gráficos SmartArt",
