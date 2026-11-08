@@ -244,6 +244,20 @@ const dataClases = {
               "extras": [
                 "archivos/nov/t3/s1/Guia_Excel_Listas_Validacion.pdf"
               ]
+            },
+            {
+              "sesion": 2,
+              "fecha": "08-11-2026",
+              "disponible": true,
+              "suspendida": false,
+              "motivo_suspension_img": "",
+              "presentacion": "",
+              "guia": "archivos/nov/t3/s2/Taller3_Sesion2_Noviembre_Terraink.pdf",
+              "urls": [],
+              "imagenes": [],
+              "extras": [
+                "archivos/nov/t3/s2/Guia_Excel_SmartArt.pdf"
+              ]
             }
           ]
       },
@@ -263,6 +277,20 @@ const dataClases = {
               "imagenes": [],
               "extras": [
                 "archivos/nov/t4/s1/Guia_Excel_Listas_Validacion.pdf"
+              ]
+            },
+            {
+              "sesion": 2,
+              "fecha": "08-11-2026",
+              "disponible": true,
+              "suspendida": false,
+              "motivo_suspension_img": "",
+              "presentacion": "",
+              "guia": "archivos/nov/t4/s2/Taller4_Sesion2_Noviembre_Gather.pdf",
+              "urls": [],
+              "imagenes": [],
+              "extras": [
+                "archivos/nov/t4/s2/Guia_Excel_SmartArt.pdf"
               ]
             }
           ]
