@@ -281,7 +281,11 @@ const dataCursos = [
           {
             "nombre": "Guía",
             "ruta": "archivos\\Avanzado\\s1\\Guia_Sesion1_AV2.pdf"
-          }
+          },
+          {
+            "nombre": "Archivos de pruebas",
+            "ruta": "archivos\\Avanzado\\s1\\DatosSesion1_AV2_COMPLETO.rar"
+          }          
         ],
         "archivosExcel": [
           {
