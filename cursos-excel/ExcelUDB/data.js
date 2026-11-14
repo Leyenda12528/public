@@ -289,7 +289,12 @@ const dataCursos = [
             "ruta": "archivos/Avanzado/s1/Sesion1_AV2_ALUMNO.xlsx"
           }
         ],
-        "urls": []
+        "urls": [
+          {
+            "nombre": "Origen Web",
+            "link": "https://es.wikipedia.org/wiki/Departamentos_de_El_Salvador"
+          }
+        ]
       }
     ]
   }
