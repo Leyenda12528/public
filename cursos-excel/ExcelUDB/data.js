@@ -137,7 +137,7 @@ const dataCursos = [
     "id": "intermedio-2",
     "titulo": "Excel Intermedio 2",
     "descripcion": "Funciones de Base de Datos y Funciones financieras",
-    "estado": "activo",
+    "estado": "finalizado",
     "duis": [
       "00000000-0",
       "05758527-1",
@@ -238,6 +238,55 @@ const dataCursos = [
           {
             "nombre": "Guia1",
             "ruta": "archivos/Inter2/s4/Sesion4_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      }
+    ]
+  },
+  {
+    "id": "Avanzado-0",
+    "titulo": "Excel Avanzado",
+    "descripcion": "Power Query · Modelo de Datos · Macros y VBA · Dashboard Ejecutivo",
+    "estado": "activo",
+    "duis": [
+      "00000000-0",
+      "05758527-1",
+      "04017190-6",
+      "05900014-6",
+      "06102225-1",
+      "06517818-5",
+      "06902027-9",
+      "06501537-9",
+      "07331702-8",
+      "01896926-8",
+      "02906167-5",
+      "05561108-4",
+      "06230439-7"
+    ],
+    "sesiones": [
+      {
+        "id": 1,
+        "titulo": "Power Query I — Obtener y Transformar datos",
+        "fecha": "14-11-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Avanzado/s1/Sesion1_Avanzado2.pdf",
+        "guias": [
+          {
+            "nombre": "Introducción",
+            "ruta": "archivos\\Avanzado\\s1\\Avanzado2_Introduccion_Modulo.pdf"
+          },
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Avanzado\\s1\\Guia_Sesion1_AV2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Avanzado/s1/Sesion1_AV2_ALUMNO.xlsx"
           }
         ],
         "urls": []
