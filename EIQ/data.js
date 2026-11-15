@@ -351,6 +351,27 @@ const dataClases = {
                 "link": "archivos/nov/t3/s2/Guia_Excel_SmartArt.pdf"
               }
             ]
+          },
+{
+            "sesion": 3,
+            "titulo": "Creación de una página web con Laboratorio Creativo",
+            "fecha": "15-11-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": {
+              "nombre": "Guía Laboratorio Creativo",
+              "link": "archivos/nov/t3/s3/Taller3_Sesion3_Noviembre_LaboratorioCreativo.pdf"
+            },
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              {
+                "nombre": "Guía Excel: Créditos y Amortización (Parte 1)",
+                "link": "archivos/nov/t3/s3/Guia_Excel_Creditos_Amortizacion_Parte1.pdf"
+              }
+            ]
           }
         ]
       },
@@ -397,6 +418,27 @@ const dataClases = {
               {
                 "nombre": "Guía Excel: SmartArt",
                 "link": "archivos/nov/t4/s2/Guia_Excel_SmartArt.pdf"
+              }
+            ]
+          },
+{
+            "sesion": 3,
+            "titulo": "Creación de códigos de barras en Word",
+            "fecha": "15-11-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": {
+              "nombre": "Guía Códigos de Barras en Word",
+              "link": "archivos/nov/t4/s3/Taller4_Sesion3_Noviembre_CodigosBarrasWord.pdf"
+            },
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              {
+                "nombre": "Guía Excel: Créditos y Amortización (Parte 1)",
+                "link": "archivos/nov/t4/s3/Guia_Excel_Creditos_Amortizacion_Parte1.pdf"
               }
             ]
           }
