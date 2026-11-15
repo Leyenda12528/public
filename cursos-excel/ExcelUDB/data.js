@@ -3,7 +3,7 @@ const appConfig = {
   "instructor": "Ing. Jorge Rivera",
   "institucion": "Universidad Don Bosco",
   "tema": "Excel",
-  "logoUrl": "../../assets/img/UDB_horizontal fondo oscuro.png"
+  "logoUrl": "../assets/img/UDB_horizontal fondo oscuro.png"
 };
 
 const dataCursos = [

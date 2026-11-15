@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Generador de Código EIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00e5ff;
+      --secondary: #b05cff;
+      --bg: #090d1f;
+      --card: #121730;
+      --border: rgba(255,255,255,0.1);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 2rem 1rem; line-height: 1.5; }
+    .container { max-width: 960px; margin: 0 auto; background: var(--card); padding: 2rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; color: #fff; }
+    .btn-nav-home { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+    .btn-nav-home:hover { background: var(--primary); color: #000; }
+
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem; }
+    input, select, textarea { width: 100%; padding: 0.65rem 0.85rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-family: inherit; font-size: 0.9rem; }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); outline: none; }
+
+    .section-box { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 1.25rem; border-radius: 12px; margin-bottom: 1.5rem; }
+    .section-title { font-size: 1.05rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+
+    .checkbox-group { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem; }
+    .checkbox-group input { width: auto; }
+
+    .dynamic-list { margin-top: 0.5rem; }
+    .dynamic-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .btn-add { padding: 0.4rem 0.8rem; background: rgba(0, 229, 255, 0.15); border: 1px solid var(--primary); color: var(--primary); border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; margin-top: 0.4rem; }
+    .btn-add:hover { background: var(--primary); color: #000; }
+    .btn-del { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #f87171; border-radius: 6px; padding: 0 0.6rem; cursor: pointer; }
+
+    .btn-primary { width: 100%; padding: 0.9rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 10px; color: #000; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 1rem; }
+    .btn-primary:hover { opacity: 0.95; }
+
+    .result { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    textarea#result-code { height: 260px; font-family: monospace; font-size: 0.85rem; }
+    .btn-copy { background: #10b981; color: #000; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 0.75rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="admin-header">
+      <div>
+        <h1>Herramienta Administrativa EIQ</h1>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Genera o actualiza sesiones para data.js con títulos y nombres de recursos.</p>
+      </div>
+      <div>
+        <a href="portal.html" class="btn-nav-home">Ir al Portal</a>
+        <a href="index.html" class="btn-nav-home">Inicio</a>
+      </div>
+    </div>
+
+    <!-- Selección de Contexto -->
+    <div class="form-row">
+      <div class="form-group">
+        <label>Mes:</label>
+        <select id="admin-mes">
+          <option value="septiembre-2026">Septiembre 2026</option>
+          <option value="octubre-2026">Octubre 2026</option>
+          <option value="noviembre-2026" selected>Noviembre 2026</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Día:</label>
+        <select id="admin-dia">
+          <option value="sabado">Sábado</option>
+          <option value="domingo" selected>Domingo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Taller:</label>
+        <select id="admin-taller">
+          <option value="taller1">Taller 1</option>
+          <option value="taller2">Taller 2</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Datos de la Sesión -->
+    <div class="section-box">
+      <div class="section-title">📌 Datos de la Sesión</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Número de Sesión:</label>
+          <input type="number" id="s-num" value="1" min="1">
+        </div>
+        <div class="form-group">
+          <label>Fecha (ej: 08-11-2026):</label>
+          <input type="text" id="s-fecha" placeholder="DD-MM-YYYY">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Título de la Sesión (Tema):</label>
+        <input type="text" id="s-titulo" placeholder="ej: Generación de Terrenos con Terraink">
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="s-disponible" checked>
+        <label for="s-disponible">¿Disponible / Visible para estudiantes?</label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="s-suspendida">
+        <label for="s-suspendida">¿Clase Suspendida?</label>
+      </div>
+
+      <div class="form-group" id="wrap-motivo" style="display:none;">
+        <label>Ruta Imagen Aviso (si está suspendida):</label>
+        <input type="text" id="s-motivo" placeholder="archivos/aviso.png">
+      </div>
+    </div>
+
+    <!-- Materiales y Recursos con Nombre -->
+    <div class="section-box">
+      <div class="section-title">📁 Recursos y Materiales de Clase</div>
+
+      <!-- Presentación -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre Presentación:</label>
+          <input type="text" id="s-pres-nombre" placeholder="ej: Presentación Terraink">
+        </div>
+        <div class="form-group">
+          <label>Ruta PDF Presentación:</label>
+          <input type="text" id="s-pres-link" placeholder="archivos/nov/t3/s2/pres.pdf">
+        </div>
+      </div>
+
+      <!-- Guía -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre Guía:</label>
+          <input type="text" id="s-guia-nombre" placeholder="ej: Guía de Clase Terraink">
+        </div>
+        <div class="form-group">
+          <label>Ruta PDF Guía:</label>
+          <input type="text" id="s-guia-link" placeholder="archivos/nov/t3/s2/guia.pdf">
+        </div>
+      </div>
+
+      <!-- URLs -->
+      <div class="form-group">
+        <label>Enlaces / Sitios Web:</label>
+        <div id="urls-list" class="dynamic-list"></div>
+        <button type="button" class="btn-add" onclick="addUrlRow()">+ Añadir Enlace</button>
+      </div>
+
+      <!-- Extras -->
+      <div class="form-group" style="margin-top:1rem;">
+        <label>Archivos Extras / Prácticas:</label>
+        <div id="extras-list" class="dynamic-list"></div>
+        <button type="button" class="btn-add" onclick="addExtraRow()">+ Añadir Archivo Extra</button>
+      </div>
+
+      <!-- Imágenes -->
+      <div class="form-group" style="margin-top:1rem;">
+        <label>Imágenes de Apoyo:</label>
+        <div id="img-list" class="dynamic-list"></div>
+        <button type="button" class="btn-add" onclick="addImgRow()">+ Añadir Imagen</button>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="generarCodigo()">⚡ Generar Código para data.js</button>
+
+    <div class="result">
+      <label>Copia este código y reemplázalo en tu archivo <code>data.js</code>:</label>
+      <textarea id="result-code" readonly></textarea>
+      <button class="btn-copy" onclick="copiarCodigo()">📋 Copiar al Portapapeles</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    document.getElementById("s-suspendida").addEventListener("change", (e) => {
+      document.getElementById("wrap-motivo").style.display = e.target.checked ? "block" : "none";
+    });
+
+    function addUrlRow(nombre = "", link = "") {
+      const div = document.createElement("div");
+      div.className = "dynamic-row";
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre (ej: ChatGPT)" class="u-name" value="${nombre}">
+        <input type="text" placeholder="https://..." class="u-link" value="${link}">
+        <button type="button" class="btn-del" onclick="this.parentElement.remove()">✕</button>
+      `;
+      document.getElementById("urls-list").appendChild(div);
+    }
+
+    function addExtraRow(nombre = "", link = "") {
+      const div = document.createElement("div");
+      div.className = "dynamic-row";
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre (ej: Guía Excel SmartArt)" class="e-name" value="${nombre}">
+        <input type="text" placeholder="archivos/..." class="e-link" value="${link}">
+        <button type="button" class="btn-del" onclick="this.parentElement.remove()">✕</button>
+      `;
+      document.getElementById("extras-list").appendChild(div);
+    }
+
+    function addImgRow(nombre = "", link = "") {
+      const div = document.createElement("div");
+      div.className = "dynamic-row";
+      div.innerHTML = `
+        <input type="text" placeholder="Nombre (ej: Diagrama de flujo)" class="i-name" value="${nombre}">
+        <input type="text" placeholder="archivos/..." class="i-link" value="${link}">
+        <button type="button" class="btn-del" onclick="this.parentElement.remove()">✕</button>
+      `;
+      document.getElementById("img-list").appendChild(div);
+    }
+
+    function parseItem(val) {
+      if (!val) return { nombre: "", link: "" };
+      if (typeof val === 'object') return { nombre: val.nombre || "", link: val.link || "" };
+      return { nombre: "", link: val };
+    }
+
+    function cargarDatos() {
+      const mes = document.getElementById("admin-mes").value;
+      const dia = document.getElementById("admin-dia").value;
+      const taller = document.getElementById("admin-taller").value;
+      const num = parseInt(document.getElementById("s-num").value) || 1;
+
+      // Limpiar listas
+      document.getElementById("urls-list").innerHTML = "";
+      document.getElementById("extras-list").innerHTML = "";
+      document.getElementById("img-list").innerHTML = "";
+
+      if (dataClases[mes] && dataClases[mes][dia] && dataClases[mes][dia][taller]) {
+        const sesion = dataClases[mes][dia][taller].sesiones.find(s => s.sesion === num);
+        if (sesion) {
+          document.getElementById("s-titulo").value = sesion.titulo || "";
+          document.getElementById("s-fecha").value = sesion.fecha || "";
+          document.getElementById("s-disponible").checked = sesion.disponible !== false;
+          document.getElementById("s-suspendida").checked = sesion.suspendida || false;
+          document.getElementById("s-motivo").value = sesion.motivo_suspension_img || "";
+          document.getElementById("wrap-motivo").style.display = sesion.suspendida ? "block" : "none";
+
+          const pres = parseItem(sesion.presentacion);
+          document.getElementById("s-pres-nombre").value = pres.nombre;
+          document.getElementById("s-pres-link").value = pres.link;
+
+          const guia = parseItem(sesion.guia);
+          document.getElementById("s-guia-nombre").value = guia.nombre;
+          document.getElementById("s-guia-link").value = guia.link;
+
+          if (Array.isArray(sesion.urls)) {
+            sesion.urls.forEach(u => {
+              const p = parseItem(u);
+              addUrlRow(p.nombre, p.link);
+            });
+          }
+
+          if (Array.isArray(sesion.extras)) {
+            sesion.extras.forEach(e => {
+              const p = parseItem(e);
+              addExtraRow(p.nombre, p.link);
+            });
+          }
+
+          if (Array.isArray(sesion.imagenes)) {
+            sesion.imagenes.forEach(i => {
+              const p = parseItem(i);
+              addImgRow(p.nombre, p.link);
+            });
+          }
+          return;
+        }
+      }
+
+      // Si no existe, reiniciar campos
+      document.getElementById("s-titulo").value = "";
+      document.getElementById("s-fecha").value = "";
+      document.getElementById("s-disponible").checked = true;
+      document.getElementById("s-suspendida").checked = false;
+      document.getElementById("wrap-motivo").style.display = "none";
+      document.getElementById("s-motivo").value = "";
+      document.getElementById("s-pres-nombre").value = "";
+      document.getElementById("s-pres-link").value = "";
+      document.getElementById("s-guia-nombre").value = "";
+      document.getElementById("s-guia-link").value = "";
+    }
+
+    ["admin-mes", "admin-dia", "admin-taller", "s-num"].forEach(id => {
+      document.getElementById(id).addEventListener("change", cargarDatos);
+    });
+
+    document.addEventListener("DOMContentLoaded", cargarDatos);
+
+    function generarCodigo() {
+      const newData = JSON.parse(JSON.stringify(dataClases));
+      const mes = document.getElementById("admin-mes").value;
+      const dia = document.getElementById("admin-dia").value;
+      const taller = document.getElementById("admin-taller").value;
+      const num = parseInt(document.getElementById("s-num").value) || 1;
+
+      if (!newData[mes]) newData[mes] = {};
+      if (!newData[mes][dia]) newData[mes][dia] = {};
+      if (!newData[mes][dia][taller]) {
+        newData[mes][dia][taller] = {
+          nombre: "Nuevo Taller",
+          horario: "Horario por definir",
+          sesiones: []
+        };
+      }
+
+      const presLink = document.getElementById("s-pres-link").value.trim();
+      const presNombre = document.getElementById("s-pres-nombre").value.trim();
+      const presObj = presLink ? (presNombre ? { nombre: presNombre, link: presLink } : presLink) : "";
+
+      const guiaLink = document.getElementById("s-guia-link").value.trim();
+      const guiaNombre = document.getElementById("s-guia-nombre").value.trim();
+      const guiaObj = guiaLink ? (guiaNombre ? { nombre: guiaNombre, link: guiaLink } : guiaLink) : "";
+
+      const urls = [];
+      document.querySelectorAll("#urls-list .dynamic-row").forEach(r => {
+        const n = r.querySelector(".u-name").value.trim();
+        const l = r.querySelector(".u-link").value.trim();
+        if (l) urls.push({ nombre: n || "Sitio Web", link: l });
+      });
+
+      const extras = [];
+      document.querySelectorAll("#extras-list .dynamic-row").forEach(r => {
+        const n = r.querySelector(".e-name").value.trim();
+        const l = r.querySelector(".e-link").value.trim();
+        if (l) extras.push({ nombre: n || "Archivo Extra", link: l });
+      });
+
+      const imagenes = [];
+      document.querySelectorAll("#img-list .dynamic-row").forEach(r => {
+        const n = r.querySelector(".i-name").value.trim();
+        const l = r.querySelector(".i-link").value.trim();
+        if (l) imagenes.push({ nombre: n || "Imagen de Apoyo", link: l });
+      });
+
+      const nuevaSesion = {
+        sesion: num,
+        titulo: document.getElementById("s-titulo").value.trim(),
+        fecha: document.getElementById("s-fecha").value.trim(),
+        disponible: document.getElementById("s-disponible").checked,
+        suspendida: document.getElementById("s-suspendida").checked,
+        motivo_suspension_img: document.getElementById("s-motivo").value.trim(),
+        presentacion: presObj,
+        guia: guiaObj,
+        urls: urls,
+        imagenes: imagenes,
+        extras: extras
+      };
+
+      const sesiones = newData[mes][dia][taller].sesiones;
+      const idx = sesiones.findIndex(s => s.sesion === num);
+      if (idx >= 0) {
+        sesiones[idx] = nuevaSesion;
+      } else {
+        sesiones.push(nuevaSesion);
+      }
+      sesiones.sort((a,b) => a.sesion - b.sesion);
+
+      const configStr = `const appConfig = ${JSON.stringify(appConfig, null, 2)};\n\n`;
+      const dataStr = `const dataClases = ${JSON.stringify(newData, null, 2)};\n`;
+
+      document.getElementById("result-code").value = configStr + dataStr;
+    }
+
+    function copiarCodigo() {
+      const ta = document.getElementById("result-code");
+      ta.select();
+      document.execCommand("copy");
+      alert("¡Código copiado! Pégalo dentro de EIQ/data.js para aplicar los cambios.");
+    }
+  </script>
+</body>
+</html>

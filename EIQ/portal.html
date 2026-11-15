@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Clases — Escuelas Integradoras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="portal-page">
+
+  <!-- Header Superior con Botón de Casa / Inicio -->
+  <header class="portal-header">
+    <div class="portal-header-container">
+      
+      <!-- Botón Home para volver al Index y cambiar de taller -->
+      <a href="index.html" class="btn-home" title="Volver al inicio y seleccionar otro taller">
+        <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Inicio</span>
+      </a>
+
+      <!-- Información del Taller Seleccionado -->
+      <div class="current-taller-info">
+        <div class="taller-meta-badge">
+          <span class="dia-pill" id="current-dia-badge">Sábado</span>
+          <span class="schedule-pill" id="current-horario">1:00 pm - 3:00 pm</span>
+        </div>
+        <h1 class="portal-title" id="current-taller-title">Cargando taller...</h1>
+      </div>
+
+      <!-- Instructor & Acceso Admin -->
+      <div class="portal-header-right">
+        <div class="instructor-tag">
+          <span class="inst-label">Docente</span>
+          <span class="inst-name" id="profesor-name">Ing. Jorge Rivera</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="portal-main container">
+
+    <!-- Barra de Navegación de Meses estilo Nav (Tabs) -->
+    <div class="nav-controls-card">
+      <div class="nav-months-wrapper">
+        <span class="nav-label">Mes:</span>
+        <nav class="months-nav" id="months-nav" role="tablist">
+          <!-- Se genera dinámicamente desde data.js -->
+        </nav>
+      </div>
+
+      <div class="taller-switcher-wrapper">
+        <span class="switcher-label">Cambiar taller:</span>
+        <select id="taller-select-dropdown" class="taller-dropdown" title="Cambiar rápidamente de taller">
+          <optgroup label="Sábado">
+            <option value="sabado:taller1">Organiza tu vida digital (1:00 pm)</option>
+            <option value="sabado:taller2">IA para la Vida diaria (3:00 pm)</option>
+          </optgroup>
+          <optgroup label="Domingo">
+            <option value="domingo:taller1">Emprende con IA (8:00 am)</option>
+            <option value="domingo:taller2">Herramientas para el trabajo (10:00 am)</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <!-- Contenedor del Taller Activo con sus Sesiones en orden descendente -->
+    <div id="taller-content-area" class="taller-content-area">
+      <!-- Se llena dinámicamente con app.js -->
+    </div>
+
+  </main>
+
+  <footer class="portal-footer">
+    <div class="container footer-content">
+      <p><strong>Dirección de Integración</strong> • Escuelas Integradoras</p>
+      <p>Impartido por: <span id="footer-profesor-name">Ing. Jorge Rivera</span></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="assets/js/mascota.js"></script>
+</body>
+</html>

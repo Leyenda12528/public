@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escuela de Tecnología — Escuelas Integradoras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-page">
+
+  <!-- Fondos dinámicos tecnológicos -->
+  <div class="bg-grid"></div>
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+  <div class="glow-orb glow-orb-3"></div>
+
+  <div class="landing-container">
+    <header class="landing-header">
+      <div class="institution-pill">
+        <span class="pulse-dot"></span>
+        Dirección de Integración • Escuelas Integradoras
+      </div>
+      <h1 class="landing-title">Escuela de Tecnología</h1>
+      <p class="landing-subtitle">
+        Selecciona tu taller para acceder directamente a las guías, presentaciones, enlaces y materiales de tus clases.
+      </p>
+    </header>
+
+    <!-- Cuadrícula interactiva de Talleres: Cada tarjeta es un botón directo -->
+    <div class="workshops-grid">
+
+      <!-- Taller 1: Sábado -->
+      <a href="portal.html?dia=sabado&taller=taller1" class="workshop-card" data-dia="sabado" data-taller="taller1">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-icon-wrap icon-cyan">
+            <span class="icon">📁</span>
+          </div>
+          <span class="card-badge badge-sabado">Sábado</span>
+        </div>
+        <div class="card-body">
+          <h3>Organiza tu vida digital</h3>
+          <p class="card-desc">Domina la organización de archivos, productividad digital y herramientas en la nube.</p>
+        </div>
+        <div class="card-footer">
+          <span class="time-tag">🕒 1:00 pm - 3:00 pm</span>
+          <span class="btn-enter">
+            <span>Ingresar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Taller 2: Sábado -->
+      <a href="portal.html?dia=sabado&taller=taller2" class="workshop-card" data-dia="sabado" data-taller="taller2">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-icon-wrap icon-purple">
+            <span class="icon">🤖</span>
+          </div>
+          <span class="card-badge badge-sabado">Sábado</span>
+        </div>
+        <div class="card-body">
+          <h3>IA para la Vida diaria</h3>
+          <p class="card-desc">Aprende a usar modelos de Inteligencia Artificial para resolver problemas cotidianos.</p>
+        </div>
+        <div class="card-footer">
+          <span class="time-tag">🕒 3:00 pm - 5:00 pm</span>
+          <span class="btn-enter">
+            <span>Ingresar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Taller 1: Domingo -->
+      <a href="portal.html?dia=domingo&taller=taller1" class="workshop-card" data-dia="domingo" data-taller="taller1">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-icon-wrap icon-emerald">
+            <span class="icon">🚀</span>
+          </div>
+          <span class="card-badge badge-domingo">Domingo</span>
+        </div>
+        <div class="card-body">
+          <h3>Emprende con IA</h3>
+          <p class="card-desc">Crea ideas de negocio, optimiza proyectos y potencia tu emprendimiento con IA.</p>
+        </div>
+        <div class="card-footer">
+          <span class="time-tag">🕒 8:00 am - 10:00 am</span>
+          <span class="btn-enter">
+            <span>Ingresar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Taller 2: Domingo -->
+      <a href="portal.html?dia=domingo&taller=taller2" class="workshop-card" data-dia="domingo" data-taller="taller2">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-icon-wrap icon-amber">
+            <span class="icon">💼</span>
+          </div>
+          <span class="card-badge badge-domingo">Domingo</span>
+        </div>
+        <div class="card-body">
+          <h3>Herramientas para el trabajo</h3>
+          <p class="card-desc">Habilidades prácticas, Excel avanzado, diseño y herramientas digitales de alta demanda.</p>
+        </div>
+        <div class="card-footer">
+          <span class="time-tag">🕒 10:00 am - 12:00 pm</span>
+          <span class="btn-enter">
+            <span>Ingresar</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <footer class="landing-footer">
+      <p>Impartido por: <strong>Ing. Jorge Rivera</strong></p>
+      <div class="footer-links">
+        <span>© 2026 Escuelas Integradoras</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Mascota Interactiva flotante -->
+  <script src="assets/js/mascota.js"></script>
+</body>
+</html>
