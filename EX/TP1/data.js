@@ -1,0 +1,331 @@
+const appConfig = {
+  "grupo": "Grupo UDB",
+  "instructor": "Ing. Jorge Rivera",
+  "institucion": "Universidad Don Bosco",
+  "tema": "Excel",
+  "logoUrl": "../assets/img/UDB_horizontal fondo oscuro.png"
+};
+
+const dataCursos = [
+  {
+    "id": "basico-1",
+    "titulo": "Excel Básico 1",
+    "descripcion": "Fundamentos: interfaz, fórmulas y formato de datos",
+    "estado": "finalizado",
+    "duis": [
+      "00000000-0"
+    ],
+    "sesiones": []
+  },
+  {
+    "id": "basico-2",
+    "titulo": "Excel Básico 2",
+    "descripcion": "Funciones lógicas, gráficos y manejo de datos",
+    "estado": "finalizado",
+    "duis": [
+      "00000000-0"
+    ],
+    "sesiones": []
+  },
+  {
+    "id": "intermedio-1",
+    "titulo": "Excel Intermedio 1",
+    "descripcion": "Tablas dinámicas, validación de datos y funciones avanzadas",
+    "estado": "finalizado",
+    "duis": [
+      "00000000-0",
+      "05758527-1",
+      "04017190-6",
+      "05900014-6",
+      "06102225-1",
+      "06517818-5",
+      "06902027-9",
+      "06501537-9",
+      "07331702-8",
+      "01896926-8",
+      "02906167-5",
+      "05561108-4",
+      "06230439-7"
+    ],
+    "sesiones": [
+      {
+        "id": 1,
+        "titulo": "Funciones lógicas y funciones de búsqueda",
+        "fecha": "19-09-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter1/s1/1- Sesion1_Intermedio1.pdf",
+        "guias": [],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter1/s1/Sesion1_Intermedio1_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 2,
+        "titulo": "Tablas dinámicas: fundamentos",
+        "fecha": "26-09-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter1/s2/Sesion2_Intermedio1.pdf",
+        "guias": [
+          {
+            "nombre": "Guía de clase",
+            "ruta": "archivos/Inter1/s2/Guia_Sesion2_Intermedio1.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia2",
+            "ruta": "archivos/Inter1/s2/Sesion2_Intermedio1_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 3,
+        "titulo": "Tablas dinámicas avanzadas + Gráficos dinámicos",
+        "fecha": "03-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos\\Inter1\\s3\\SESION  NO. 3.pdf",
+        "guias": [
+          {
+            "nombre": "Guía de clase",
+            "ruta": "archivos\\Inter1\\s3\\Guia_Sesion3_Intermedio1.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Ejercicio",
+            "ruta": "archivos\\Inter1\\s3\\Sesion3_Intermedio1_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 4,
+        "titulo": "Cierre del módulo",
+        "fecha": "10-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos\\Inter1\\s4\\Sesion4_Intermedio1.pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter1\\s4\\Guia_Sesion4_Intermedio1 (1).pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Ejercicio",
+            "ruta": "archivos\\Inter1\\s4\\Sesion4_Intermedio1_ALUMNO (2).xlsx"
+          }
+        ],
+        "urls": []
+      }
+    ]
+  },
+  {
+    "id": "intermedio-2",
+    "titulo": "Excel Intermedio 2",
+    "descripcion": "Funciones de Base de Datos y Funciones financieras",
+    "estado": "finalizado",
+    "duis": [
+      "00000000-0",
+      "05758527-1",
+      "04017190-6",
+      "05900014-6",
+      "06102225-1",
+      "06517818-5",
+      "06902027-9",
+      "06501537-9",
+      "07331702-8",
+      "01896926-8",
+      "02906167-5",
+      "05561108-4",
+      "06230439-7"
+    ],
+    "sesiones": [
+      {
+        "id": 1,
+        "titulo": "Bases de datos + Búsqueda avanzada ",
+        "fecha": "17-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter2/s1/Sesion1_Intermedio2 (1).pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s1\\Guia_Sesion1_Intermedio2 (1).pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s1/Sesion1_Intermedio2_ALUMNO (1).xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 2,
+        "titulo": "Funciones de Base de Datos + Nombres de rango + Esquemas ",
+        "fecha": "24-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter2/s2/Sesion2_Intermedio2.pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s2\\Guia_Sesion2_Intermedio2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s2/Sesion2_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 3,
+        "titulo": "Validación · Herramientas de datos · Inmovilización",
+        "fecha": "31-10-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s3\\Guia_Sesion3_Intermedio2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s3/Sesion3_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      },
+      {
+        "id": 4,
+        "titulo": "Funciones Financieras · Análisis de Hipótesis · Gráficos SmartArt",
+        "fecha": "07-11-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Inter2/s4/Sesion4_Intermedio2.pdf",
+        "guias": [
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Inter2\\s4\\Guia_Sesion4_Intermedio2.pdf"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Inter2/s4/Sesion4_Int2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      }
+    ]
+  },
+  {
+    "id": "Avanzado-0",
+    "titulo": "Excel Avanzado",
+    "descripcion": "Power Query · Modelo de Datos · Macros y VBA · Dashboard Ejecutivo",
+    "estado": "activo",
+    "duis": [
+      "00000000-0",
+      "05758527-1",
+      "04017190-6",
+      "05900014-6",
+      "06102225-1",
+      "06517818-5",
+      "06902027-9",
+      "06501537-9",
+      "07331702-8",
+      "01896926-8",
+      "02906167-5",
+      "05561108-4",
+      "06230439-7"
+    ],
+    "sesiones": [
+      {
+        "id": 1,
+        "titulo": "Power Query I — Obtener y Transformar datos",
+        "fecha": "14-11-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Avanzado/s1/Sesion1_Avanzado2.pdf",
+        "guias": [
+          {
+            "nombre": "Introducción",
+            "ruta": "archivos\\Avanzado\\s1\\Avanzado2_Introduccion_Modulo.pdf"
+          },
+          {
+            "nombre": "Guía",
+            "ruta": "archivos\\Avanzado\\s1\\Guia_Sesion1_AV2.pdf"
+          },
+          {
+            "nombre": "Archivos de pruebas",
+            "ruta": "archivos\\Avanzado\\s1\\DatosSesion1_AV2_COMPLETO.rar"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Guia1",
+            "ruta": "archivos/Avanzado/s1/Sesion1_AV2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": [
+          {
+            "nombre": "Origen Web",
+            "link": "https://es.wikipedia.org/wiki/Departamentos_de_El_Salvador"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "titulo": "Power Query II — Combinar y Anexar",
+        "fecha": "21-11-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Avanzado/s2/Sesion2_Avanzado2.pdf",
+        "guias": [
+          {
+            "nombre": "Indicaciones de guía 2",
+            "ruta": "archivos\\Avanzado\\s2\\Guia_Sesion2_AV2.pdf"
+          },
+          {
+            "nombre": "Archivos de pruebas",
+            "ruta": "archivos\\Avanzado\\s2\\DatosSesion2_AV2_COMPLETO.rar"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Archivo Excel",
+            "ruta": "archivos/Avanzado/s2/Sesion2_AV2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
+      }
+    ]
+  }
+];
