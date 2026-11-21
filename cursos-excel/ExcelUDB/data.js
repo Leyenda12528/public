@@ -285,7 +285,7 @@ const dataCursos = [
           {
             "nombre": "Archivos de pruebas",
             "ruta": "archivos\\Avanzado\\s1\\DatosSesion1_AV2_COMPLETO.rar"
-          }          
+          }
         ],
         "archivosExcel": [
           {
@@ -299,6 +299,32 @@ const dataCursos = [
             "link": "https://es.wikipedia.org/wiki/Departamentos_de_El_Salvador"
           }
         ]
+      },
+      {
+        "id": 2,
+        "titulo": "Power Query II — Combinar y Anexar",
+        "fecha": "21-11-2026",
+        "disponible": true,
+        "suspendida": false,
+        "motivo_suspension_img": "",
+        "presentacion": "archivos/Avanzado/s2/Sesion2_Avanzado2.pdf",
+        "guias": [
+          {
+            "nombre": "Indicaciones de guía 2",
+            "ruta": "archivos\\Avanzado\\s2\\Guia_Sesion2_AV2.pdf"
+          },
+          {
+            "nombre": "Archivos de pruebas",
+            "ruta": "archivos\\Avanzado\\s2\\DatosSesion2_AV2_COMPLETO.rar"
+          }
+        ],
+        "archivosExcel": [
+          {
+            "nombre": "Archivo Excel",
+            "ruta": "archivos/Avanzado/s2/Sesion2_AV2_ALUMNO.xlsx"
+          }
+        ],
+        "urls": []
       }
     ]
   }
