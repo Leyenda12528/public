@@ -352,7 +352,7 @@ const dataClases = {
               }
             ]
           },
-{
+          {
             "sesion": 3,
             "titulo": "Creación de una página web con Laboratorio Creativo",
             "fecha": "15-11-2026",
@@ -370,6 +370,27 @@ const dataClases = {
               {
                 "nombre": "Guía Excel: Créditos y Amortización (Parte 1)",
                 "link": "archivos/nov/t3/s3/Guia_Excel_Creditos_Amortizacion_Parte1.pdf"
+              }
+            ]
+          },
+          {
+            "sesion": 4,
+            "titulo": "Multi tipografias con Laboratorio Creativo",
+            "fecha": "22-11-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": {
+              "nombre": "Guía Laboratorio Creativo",
+              "link": "archivos/nov/t3/s4/Guia_Taller3_S4_Animador_de_Texto.pdf"
+            },
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              {
+                "nombre": "Guía Excel: Créditos y Amortización (Parte 2)",
+                "link": "archivos/nov/t4/s3/Guia_Excel_Creditos_Amortizacion_Parte2.pdf"
               }
             ]
           }
@@ -421,7 +442,7 @@ const dataClases = {
               }
             ]
           },
-{
+          {
             "sesion": 3,
             "titulo": "Creación de códigos de barras en Word",
             "fecha": "15-11-2026",
@@ -439,6 +460,27 @@ const dataClases = {
               {
                 "nombre": "Guía Excel: Créditos y Amortización (Parte 1)",
                 "link": "archivos/nov/t4/s3/Guia_Excel_Creditos_Amortizacion_Parte1.pdf"
+              }
+            ]
+          },
+          {
+            "sesion": 4,
+            "titulo": "Creación de códigos de QRs en Word",
+            "fecha": "15-11-2026",
+            "disponible": true,
+            "suspendida": false,
+            "motivo_suspension_img": "",
+            "presentacion": "",
+            "guia": {
+              "nombre": "Guía Códigos de QRs en Word",
+              "link": "archivos/nov/t4/s3/Guia_Taller4_S4_Codigos_QR_en_Word.pdf"
+            },
+            "urls": [],
+            "imagenes": [],
+            "extras": [
+              {
+                "nombre": "Guía Excel: Créditos y Amortización (Parte 2)",
+                "link": "archivos/nov/t4/s3/Guia_Excel_Creditos_Amortizacion_Parte2.pdf"
               }
             ]
           }
